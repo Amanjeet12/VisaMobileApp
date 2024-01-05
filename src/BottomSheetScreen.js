@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unstable-nested-components */
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   View,
   Text,
   Platform,
   KeyboardAvoidingView,
+  Keyboard,
 } from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -23,6 +24,8 @@ import {
   TransactionFocusedIconComponent,
   TransactionIconComponent,
 } from './SvgComponent.js/DashboardComponent';
+import {SIZES} from '../constant';
+import Dashboard from './Dashboard';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,7 +35,7 @@ const BottomSheetScreen = () => {
     <KeyboardAvoidingView
       style={{flex: 1}}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -100}>
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : -SIZES.width * 0.245}>
       <Tab.Navigator
         initialRouteName="DashboardScreen"
         screenOptions={{
@@ -43,12 +46,12 @@ const BottomSheetScreen = () => {
             bottom: 0,
             left: 0,
             right: 0,
-            height: 75,
+            height: SIZES.width * 0.183,
             borderRadius: 0,
             borderTopWidth: 0.75,
             borderTopColor: '#ABABAB',
             elevation: Platform.OS === 'ios' ? 3 : 20,
-            paddingHorizontal: 10,
+            paddingHorizontal: SIZES.body6,
             shadowOffset: {
               width: 0,
               height: Platform.OS === 'ios' ? -10 : -20,
@@ -59,8 +62,8 @@ const BottomSheetScreen = () => {
           },
         }}>
         <Tab.Screen
-          name="DashboardScreen"
-          component={DashboardScreen}
+          name="Dashboard"
+          component={Dashboard}
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({color, size, focused}) =>

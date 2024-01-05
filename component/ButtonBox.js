@@ -15,8 +15,6 @@ const ButtonBox = ({
     specific ? navigation.navigate(specific) : null;
   };
 
-  console.log(SIZES.width * 0.134);
-
   return (
     <View>
       <TouchableOpacity
@@ -46,14 +44,14 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold',
-    fontSize: SIZES.width * 0.045,
+    fontSize: SIZES.width * 0.04,
+    fontWeight: '500',
   },
   image: {
     width: SIZES.horizontal,
     height: SIZES.horizontal,
     resizeMode: 'contain',
-    marginLeft: 5,
+    marginLeft: SIZES.width * 0.015,
   },
 });
 

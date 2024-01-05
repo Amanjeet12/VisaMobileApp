@@ -19,6 +19,7 @@ import SaveUploadPassportBackScreen from './SaveUplaodPassportScreen';
 import BottomSheetScreen from './BottomSheetScreen';
 import DetailTransaction from './DetailTransaction';
 import SearchPage from './SearchPage';
+import Dashboard from './Dashboard';
 
 const Stack = createStackNavigator();
 
@@ -62,6 +63,7 @@ const Main = () => {
       <Stack.Screen name="BottomSheetScreen" component={BottomSheetScreen} />
       <Stack.Screen name="DetailTransaction" component={DetailTransaction} />
       <Stack.Screen name="SearchPage" component={SearchPage} />
+      <Stack.Screen name="Dashboard" component={Dashboard} />
     </Stack.Navigator>
   );
 };

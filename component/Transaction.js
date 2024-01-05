@@ -1,6 +1,6 @@
 import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {image} from '../constant';
+import {SIZES, image} from '../constant';
 import Icon from 'react-native-vector-icons/Feather';
 
 const Transaction = () => {
@@ -9,7 +9,12 @@ const Transaction = () => {
       <ImageBackground
         source={image.map}
         style={{height: '100%', width: '100%'}}>
-        <View style={{padding: 15, paddingHorizontal: 25, height: '100%'}}>
+        <View
+          style={{
+            padding: SIZES.width * 0.037,
+            paddingHorizontal: SIZES.width * 0.061,
+            height: '100%',
+          }}>
           <View style={styles.flexbox}>
             <View>
               <Text style={styles.title}>From</Text>
@@ -20,15 +25,29 @@ const Transaction = () => {
               <Text style={[styles.description, {textAlign: 'left'}]}>UAE</Text>
             </View>
           </View>
-          <View style={[styles.flexbox, {marginTop: 20}]}>
+          <View style={[styles.flexbox, {marginTop: SIZES.width * 0.05}]}>
             <View>
-              <Text style={[styles.title, {fontSize: 14, lineHeight: 20}]}>
+              <Text
+                style={[
+                  styles.title,
+                  {
+                    fontSize: SIZES.width * 0.035,
+                    lineHeight: SIZES.width * 0.05,
+                  },
+                ]}>
                 Days of stay
               </Text>
               <Text style={styles.description}>90 days</Text>
             </View>
             <View>
-              <Text style={[styles.title, {fontSize: 14, lineHeight: 20}]}>
+              <Text
+                style={[
+                  styles.title,
+                  {
+                    fontSize: SIZES.width * 0.035,
+                    lineHeight: SIZES.width * 0.05,
+                  },
+                ]}>
                 Entry Type
               </Text>
               <Text style={[styles.description, {textAlign: 'right'}]}>
@@ -44,35 +63,46 @@ const Transaction = () => {
               styles.flexbox,
               {
                 position: 'absolute',
-                bottom: 10,
+                bottom: SIZES.body6,
                 width: '100%',
-                left: 25,
+                left: SIZES.width * 0.061,
               },
             ]}>
             <View>
               <Text
                 style={[
                   styles.title,
-                  {fontSize: 14, lineHeight: 20, color: '#FFC727'},
+                  {
+                    fontSize: SIZES.width * 0.035,
+                    lineHeight: SIZES.width * 0.05,
+                    color: '#FFC727',
+                  },
                 ]}>
                 Download Visa
               </Text>
             </View>
             <View>
-              <Icon name={'arrow-down-circle'} size={24} color={'#FFC727'} />
+              <Icon
+                name={'arrow-down-circle'}
+                size={SIZES.width * 0.06}
+                color={'#FFC727'}
+              />
             </View>
           </View>
           <View style={styles.aeroplane}>
             <Image
               source={image.flight}
               style={{
-                width: 150,
-                height: 30,
+                width: SIZES.width * 0.365,
+                height: SIZES.h1,
                 resizeMode: 'contain',
               }}
             />
             <Text
-              style={[styles.description, {paddingLeft: 15, color: '#fff'}]}>
+              style={[
+                styles.description,
+                {paddingLeft: SIZES.width * 0.02, color: '#fff'},
+              ]}>
               Tourism
             </Text>
           </View>
@@ -86,32 +116,31 @@ export default Transaction;
 
 const styles = StyleSheet.create({
   container: {
-    height: 200,
+    height: SIZES.width * 0.49,
     backgroundColor: '#327113',
     borderRadius: 20,
-    // marginTop: 10,
     borderColor: 'rgba(255, 199, 39, 0.70)',
     borderWidth: 2,
   },
   smallContainer: {
-    width: 25,
-    height: 25,
+    width: SIZES.width * 0.061,
+    height: SIZES.width * 0.061,
     backgroundColor: '#fff',
     borderRadius: 30,
     position: 'absolute',
-    bottom: 40,
-    left: -12,
+    bottom: SIZES.width * 0.098,
+    left: -SIZES.width * 0.03,
     borderWidth: 2,
     borderColor: 'rgba(255, 199, 39, 0.70)',
   },
   smallContainer2: {
-    width: 25,
-    height: 25,
+    width: SIZES.width * 0.061,
+    height: SIZES.width * 0.061,
     backgroundColor: '#fff',
     borderRadius: 30,
     position: 'absolute',
-    bottom: 40,
-    right: -12,
+    bottom: SIZES.width * 0.098,
+    right: -SIZES.width * 0.03,
     borderWidth: 2,
     borderColor: 'rgba(255, 199, 39, 0.70)',
   },
@@ -122,30 +151,30 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: SIZES.width * 0.044,
     fontWeight: '500',
-    lineHeight: 30,
+    lineHeight: SIZES.h1,
   },
   divider: {
     position: 'absolute',
     width: '100%',
     height: 1,
-    left: 25,
-    bottom: 50,
+    left: SIZES.width * 0.061,
+    bottom: SIZES.width * 0.123,
     borderBottomWidth: 1,
     borderBottomColor: '#BDBDBD', // Adjust color as needed
     borderStyle: 'dotted',
   },
   description: {
-    fontSize: 12,
+    fontSize: SIZES.width * 0.03,
     color: '#fff',
     fontWeight: '400',
     paddingTop: 2,
   },
   aeroplane: {
     position: 'absolute',
-    top: 15,
-    left: 120,
+    top: SIZES.width * 0.037,
+    left: SIZES.width * 0.292,
     alignItems: 'center',
   },
 });

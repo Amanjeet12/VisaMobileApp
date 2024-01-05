@@ -13,29 +13,16 @@ import React, {useEffect, useState} from 'react';
 import {useDarkTheme} from '../constant/ThemeContext';
 import BackArrow from '../component/BackArrow';
 import ImageBox from '../component/ImageBox';
+import ButtonBox from '../component/ButtonBox';
+import {SIZES} from '../constant';
 
 const TravellerPhotoSaveScreen = ({navigation}) => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
   const [isModalVisible, setModalVisible] = useState(false);
 
-  const navigateToNextPage = () => {
-    navigation.navigate('DetailScreen');
-  };
-
-  useEffect(() => {
-    if (isModalVisible) {
-      const timer = setTimeout(navigateToNextPage, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [isModalVisible]);
-
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
-      <StatusBar
-        backgroundColor={theme.background}
-        barStyle={isDarkTheme ? 'dark-content' : 'light-content'}
-      />
+    <SafeAreaView style={[styles.container, {backgroundColor: '#fff'}]}>
+      <StatusBar backgroundColor={theme.background} barStyle={'dark-content'} />
       <ScrollView
         style={styles.ScrollView}
         showsVerticalScrollIndicator={false}>
@@ -49,12 +36,11 @@ const TravellerPhotoSaveScreen = ({navigation}) => {
             }
           />
         </View>
-        <TouchableOpacity
-          onPress={() => navigateToNextPage()}
-          style={[styles.button, {marginTop: 20}]}>
-          <Text style={styles.buttonText}>Next</Text>
-        </TouchableOpacity>
+        <View style={{marginTop: SIZES.width * 0.05}}>
+          <ButtonBox placeholder={'Next'} specific={'DetailScreen'} />
+        </View>
       </ScrollView>
+      {console.log(SIZES.width * 0.0853)}
     </SafeAreaView>
   );
 };
@@ -64,47 +50,10 @@ export default TravellerPhotoSaveScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: SIZES.width * 0.05,
   },
   ScrollView: {
     flexGrow: 1,
-    paddingBottom: 50,
-  },
-  button: {
-    backgroundColor: 'green',
-    padding: 10,
-    borderRadius: 8,
-    alignItems: 'center',
-    height: 55,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    paddingHorizontal: 20,
-  },
-  modalView: {
-    width: '100%',
-    height: 450,
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    paddingBottom: SIZES.extralarge,
   },
 });

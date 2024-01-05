@@ -1,8 +1,6 @@
 import {Dimensions} from 'react-native';
 const {width, height} = Dimensions.get('window');
 
-// console.log(width * 0.095);
-
 export const COLORS = {
   light: {
     background: '#fff',
@@ -44,38 +42,69 @@ export const COLORS = {
     },
   },
   dark: {
-    background: '#000',
-    secondary: '#fff',
+    bbackground: '#fff',
+    secondary: '#000',
+    primary: '#327113',
     FONTS: {
-      largeTitle: {fontFamily: 'Poppins-Black', fontSize: 40},
-      h1: {fontFamily: 'Poppins-Bold', fontSize: 30, lineHeight: 36},
+      largeTitle: {fontFamily: 'Inter-Bold', fontSize: width * 0.125},
+      h1: {
+        fontFamily: 'Inter-Bold',
+        fontSize: width * 0.095,
+        lineHeight: width * 0.113,
+      },
+      h2: {
+        fontFamily: 'Inter-Medium',
+        fontSize: width * 0.069,
+        lineHeight: width * 0.094,
+      },
+      h3: {
+        fontFamily: 'Inter-Medium',
+        fontSize: width * 0.065,
+        lineHeight: width * 0.088,
+      },
+      h4: {
+        fontFamily: 'Inter-Medium',
+        fontSize: width * 0.056,
+        lineHeight: width * 0.082,
+      },
+      h5: {
+        fontFamily: 'Inter-Medium',
+        fontSize: width * 0.04,
+        lineHeight: width * 0.075,
+      },
+
+      body1: {
+        fontFamily: 'Inter-Medium',
+        fontSize: width * 0.035,
+        lineHeight: width * 0.084,
+      },
     },
   },
 };
 export const SIZES = {
   // global sizes
-  base: 8,
-  font: 14,
-  radius: 12,
-  padding: 24,
-  horizontal: 20,
+  base: width * 0.02,
+  font: width * 0.0341,
+  radius: width * 0.03,
+  padding: width * 0.059,
+  horizontal: width * 0.05,
 
   // font sizes
-  extralarge: 50,
-  largeTitle: 40,
-  h1: 30,
-  h2: 28,
-  h3: 25,
-  h4: 22,
-  h5: 16,
-  h6: 14,
-  h7: 12,
-  body1: 30,
-  body2: 22,
-  body3: 16,
-  body4: 14,
-  body5: 12,
-  body6: 10,
+  extralarge: width * 0.123,
+  largeTitle: width * 0.0973,
+  h1: width * 0.074,
+  h2: width * 0.069,
+  h3: width * 0.06,
+  h4: width * 0.054,
+  h5: width * 0.04,
+  h6: width * 0.0341,
+  h7: width * 0.03,
+  body1: width * 0.074,
+  body2: width * 0.054,
+  body3: width * 0.04,
+  body4: width * 0.0341,
+  body5: width * 0.03,
+  body6: width * 0.025,
 
   // app dimensions
   width,

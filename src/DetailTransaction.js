@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   Image,
   SafeAreaView,
@@ -11,7 +12,7 @@ import {
 import React, {useState} from 'react';
 import {useDarkTheme} from '../constant/ThemeContext';
 import BackArrow from '../component/BackArrow';
-import {image} from '../constant';
+import {SIZES, image} from '../constant';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Download from 'react-native-vector-icons/Feather';
 import ButtonBox from '../component/ButtonBox';
@@ -20,25 +21,29 @@ const DetailTransaction = () => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
 
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
+    <SafeAreaView style={[styles.container, {backgroundColor: '#fff'}]}>
       <StatusBar
         backgroundColor={theme.background}
-        barStyle={isDarkTheme ? 'dark-content' : 'light-content'}
+        barStyle={'light-content'}
       />
       <View style={styles.mainContainer}>
         <BackArrow placeholder={'Visa Details'} />
         <View style={styles.boxContainer}>
           <View style={styles.flex}>
             <Image source={image.flagIND} style={styles.image} />
-            <Text style={{paddingLeft: 10, color: '#000'}}>
+            <Text
+              style={{
+                paddingLeft: SIZES.body6,
+                color: '#000',
+                fontSize: SIZES.width * 0.035,
+              }}>
               30 Days Tourist Visa
             </Text>
           </View>
           <View
             style={[
               styles.flex,
-              {justifyContent: 'space-between', marginTop: 10},
+              {justifyContent: 'space-between', marginTop: SIZES.body6},
             ]}>
             <Text style={styles.title}>IN</Text>
             <Text style={[styles.title, {textAlign: 'right'}]}>UAE</Text>
@@ -46,10 +51,10 @@ const DetailTransaction = () => {
           <View
             style={[
               styles.flex,
-              {justifyContent: 'space-between', marginTop: 10},
+              {justifyContent: 'space-between', marginTop: SIZES.body6},
             ]}>
             <View style={styles.flex}>
-              <Icon name={'person'} size={12} color={'#327113'} />
+              <Icon name={'person'} size={SIZES.body5} color={'#327113'} />
               <Text style={[styles.description, {paddingLeft: 3}]}>
                 2 person
               </Text>
@@ -59,18 +64,23 @@ const DetailTransaction = () => {
           <View
             style={[
               styles.flex,
-              {justifyContent: 'space-between', marginTop: 12},
+              {justifyContent: 'space-between', marginTop: SIZES.body5},
             ]}>
             <View style={styles.flex}>
               <Image source={image.avatar} style={styles.image} />
-              <Text style={{color: '#000', marginLeft: 5}}>
+              <Text
+                style={{
+                  color: '#000',
+                  marginLeft: SIZES.width * 0.013,
+                  fontSize: SIZES.width * 0.03,
+                }}>
                 Vikrant Kumar Singh
               </Text>
             </View>
             <View>
               <Download
                 name={'arrow-down-circle'}
-                size={25}
+                size={SIZES.width * 0.05}
                 color={'#327113'}
               />
             </View>
@@ -78,18 +88,23 @@ const DetailTransaction = () => {
           <View
             style={[
               styles.flex,
-              {justifyContent: 'space-between', marginTop: 3},
+              {justifyContent: 'space-between', marginTop: SIZES.width * 0.01},
             ]}>
             <View style={styles.flex}>
               <Image source={image.avatar} style={styles.image} />
-              <Text style={{color: '#000', marginLeft: 5}}>
+              <Text
+                style={{
+                  color: '#000',
+                  marginLeft: SIZES.width * 0.015,
+                  fontSize: SIZES.width * 0.03,
+                }}>
                 Rohit Kumar Singh
               </Text>
             </View>
             <View>
               <Download
                 name={'arrow-down-circle'}
-                size={25}
+                size={SIZES.width * 0.05}
                 color={'#327113'}
               />
             </View>
@@ -98,7 +113,7 @@ const DetailTransaction = () => {
         <View
           style={[
             styles.flex,
-            {justifyContent: 'space-between', marginTop: 20},
+            {justifyContent: 'space-between', marginTop: SIZES.width * 0.05},
           ]}>
           <Text style={styles.description}>Status</Text>
           <Text style={[styles.description, {color: '#327113'}]}>
@@ -108,7 +123,7 @@ const DetailTransaction = () => {
         <View
           style={[
             styles.flex,
-            {justifyContent: 'space-between', marginTop: 10},
+            {justifyContent: 'space-between', marginTop: SIZES.body6},
           ]}>
           <Text style={styles.description}>Invoice</Text>
           <Text style={styles.description}>INV23124131332</Text>
@@ -116,7 +131,7 @@ const DetailTransaction = () => {
         <View
           style={[
             styles.flex,
-            {justifyContent: 'space-between', marginTop: 10},
+            {justifyContent: 'space-between', marginTop: SIZES.body6},
           ]}>
           <Text style={styles.description}>Transaction Date</Text>
           <Text style={styles.description}>Wed, 18 Oct 2022</Text>
@@ -124,24 +139,24 @@ const DetailTransaction = () => {
         <View
           style={[
             styles.flex,
-            {justifyContent: 'space-between', marginTop: 10},
+            {justifyContent: 'space-between', marginTop: SIZES.body6},
           ]}>
           <Text style={styles.description}>Payment Method</Text>
           <Text style={styles.description}>Razorpay</Text>
         </View>
-        <View style={[styles.boxContainer, {height: 120, marginTop: 20}]}>
-          <View
-            style={[
-              styles.flex,
-              {justifyContent: 'space-between', marginTop: 0},
-            ]}>
+        <View
+          style={[
+            styles.boxContainer,
+            {height: SIZES.width * 0.292, marginTop: SIZES.width * 0.05},
+          ]}>
+          <View style={[styles.flex, {justifyContent: 'space-between'}]}>
             <Text style={styles.description}>Visa Fee</Text>
             <Text style={styles.description}>$100</Text>
           </View>
           <View
             style={[
               styles.flex,
-              {justifyContent: 'space-between', marginTop: 10},
+              {justifyContent: 'space-between', marginTop: SIZES.body6},
             ]}>
             <Text style={styles.description}>Service Fee</Text>
             <Text style={styles.description}>$5</Text>
@@ -149,13 +164,13 @@ const DetailTransaction = () => {
           <View
             style={[
               styles.flex,
-              {justifyContent: 'space-between', marginTop: 10},
+              {justifyContent: 'space-between', marginTop: SIZES.body6},
             ]}>
             <Text style={styles.description}>Total </Text>
             <Text style={styles.description}>$105</Text>
           </View>
         </View>
-        <View style={{marginTop: 20}}>
+        <View style={{marginTop: SIZES.width * 0.05}}>
           <ButtonBox placeholder={'Download Invoice'} />
         </View>
       </View>
@@ -170,21 +185,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainContainer: {
-    paddingHorizontal: 24,
+    paddingHorizontal: SIZES.width * 0.06,
   },
   boxContainer: {
-    height: 200,
+    height: SIZES.width * 0.5,
     width: '100%',
     backgroundColor: '#fff',
     borderRadius: 8,
     borderWidth: 1,
     borderColor: 'rgba(13, 22, 52, 0.05)',
-    paddingVertical: 24,
-    paddingHorizontal: 16,
+    paddingVertical: SIZES.width * 0.06,
+    paddingHorizontal: SIZES.width * 0.04,
   },
   image: {
-    width: 25,
-    height: 25,
+    width: SIZES.width * 0.06,
+    height: SIZES.width * 0.06,
     resizeMode: 'contain',
   },
   flex: {
@@ -192,12 +207,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: SIZES.width * 0.06,
     color: '#000',
     fontWeight: '500',
   },
   description: {
-    fontSize: 12,
+    fontSize: SIZES.width * 0.028,
     color: '#0D1634',
     fontWeight: '500',
   },

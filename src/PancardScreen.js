@@ -14,17 +14,14 @@ import BackArrow from '../component/BackArrow';
 import ImageBox from '../component/ImageBox';
 import CommonTextInput from '../component/CommonTextInput';
 import ButtonBox from '../component/ButtonBox';
+import {SIZES} from '../constant';
 
 const PancardScreen = () => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
 
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
-      <StatusBar
-        backgroundColor={theme.background}
-        barStyle={isDarkTheme ? 'dark-content' : 'light-content'}
-      />
+    <SafeAreaView style={[styles.container, {backgroundColor: '#fff'}]}>
+      <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
       <ScrollView
         style={styles.ScrollView}
         showsVerticalScrollIndicator={false}>
@@ -38,7 +35,7 @@ const PancardScreen = () => {
             }
           />
         </View>
-        <View style={{marginTop: 20}}>
+        <View style={{marginTop: SIZES.width * 0.05}}>
           <Text style={{...theme.FONTS.h4, color: '#000'}}>
             Pancard Details
           </Text>
@@ -49,7 +46,7 @@ const PancardScreen = () => {
         <View>
           <CommonTextInput title={'Pancard no'} placeholder={'Enter pan no'} />
         </View>
-        <View style={{marginTop: 20}}>
+        <View style={{marginTop: SIZES.width * 0.05}}>
           <ButtonBox placeholder={'Next'} specific={'TravellerPhotoScreen'} />
         </View>
       </ScrollView>
@@ -62,10 +59,10 @@ export default PancardScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: SIZES.width * 0.05,
   },
   ScrollView: {
     flexGrow: 1,
-    paddingBottom: 50,
+    paddingBottom: SIZES.extralarge,
   },
 });

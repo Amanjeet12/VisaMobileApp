@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   fontTitle: {
-    fontSize: SIZES.padding,
+    fontSize: SIZES.body2,
     color: '#000',
     fontWeight: '500',
     fontFamily: 'Inter-Medium',

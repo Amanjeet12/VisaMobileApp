@@ -20,12 +20,8 @@ const UploadPassportBackScreen = () => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
 
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
-      <StatusBar
-        backgroundColor={theme.background}
-        barStyle={isDarkTheme ? 'dark-content' : 'light-content'}
-      />
+    <SafeAreaView style={[styles.container]}>
+      <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
       <ScrollView
         style={styles.ScrollView}
         showsVerticalScrollIndicator={false}>
@@ -56,7 +52,7 @@ const UploadPassportBackScreen = () => {
             placeholder={'Enter Mother no'}
           />
         </View>
-        <View style={{marginTop: 20}}>
+        <View style={{marginTop: SIZES.width * 0.05}}>
           <ButtonBox placeholder={'Next'} specific={'PancardScreen'} />
         </View>
       </ScrollView>
@@ -69,10 +65,11 @@ export default UploadPassportBackScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: SIZES.width * 0.05,
+    backgroundColor: '#fff',
   },
   ScrollView: {
     flexGrow: 1,
-    paddingBottom: 50,
+    paddingBottom: SIZES.extralarge,
   },
 });

@@ -12,11 +12,13 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDarkTheme} from '../constant/ThemeContext';
-import {image} from '../constant';
+import {SIZES, image} from '../constant';
 import ButtonBox from '../component/ButtonBox';
 
 const CompleteScreen = () => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
+
+  console.log(SIZES.width * 0.42);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,26 +27,31 @@ const CompleteScreen = () => {
         <View style={styles.imageContainer}>
           <Image source={image.completeIcon} style={styles.image} />
         </View>
-        <View style={{alignItems: 'center', marginTop: 50}}>
+        <View
+          style={{
+            alignItems: 'center',
+            marginTop: SIZES.extralarge,
+            fontSize: SIZES.width * 0.03,
+          }}>
           <Text style={{...theme.FONTS.h1, color: '#fff'}}>
             Happy Travelling
           </Text>
           <Text
             style={{
-              fontSize: 14,
+              fontSize: SIZES.body4,
               textAlign: 'center',
               color: '#fff',
-              marginTop: 10,
+              marginTop: SIZES.body6,
             }}>
             Your application has been submitted we will now process your Visa
           </Text>
         </View>
-        <View style={{width: '100%', marginTop: 50}}>
+        <View style={{width: '100%', marginTop: SIZES.extralarge}}>
           <ButtonBox
             placeholder={'Back to home'}
             backgroundColor={'#fff'}
             textColor={'#000'}
-            specific={'DashboardScreen'}
+            specific={'BottomSheetScreen'}
           />
         </View>
       </View>
@@ -61,8 +68,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   image: {
-    width: 300,
-    height: 170,
+    width: SIZES.width * 0.73,
+    height: SIZES.width * 0.42,
     resizeMode: 'contain',
   },
   imageContainer: {

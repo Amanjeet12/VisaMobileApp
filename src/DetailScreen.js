@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   Image,
   ImageBackground,
@@ -53,7 +54,7 @@ const DetailScreen = ({navigation}) => {
             <Text style={{...theme.FONTS.h4, color: '#000'}}>
               Complete Details
             </Text>
-            <View style={{marginTop: 10}}>
+            <View style={{marginTop: SIZES.body6}}>
               <Text style={{...theme.FONTS.body1, color: '#000'}}>
                 Saved Details
               </Text>
@@ -62,7 +63,7 @@ const DetailScreen = ({navigation}) => {
               {data.map(item => (
                 <View
                   key={item.id}
-                  style={{marginTop: 0, marginBottom: 10}}
+                  style={{marginBottom: SIZES.body6}}
                   onPress={() => console.log('index')}>
                   <UserDetails data={item} onSelect={handleUserSelect} />
                 </View>
@@ -83,11 +84,21 @@ const DetailScreen = ({navigation}) => {
                   },
                 ]}
                 onPress={() => navigation.navigate('NewUploadPassportScreen')}>
-                <Text>Create New Coustomer</Text>
-                <Icon name="plus" size={25} color={'#000'} />
+                <Text
+                  style={{
+                    fontSize: SIZES.width * 0.035,
+                    color: 'rgba(37, 40, 49, 0.50))',
+                  }}>
+                  Create New Coustomer
+                </Text>
+                <Icon name="plus" size={SIZES.width * 0.061} color={'#000'} />
               </TouchableOpacity>
             </View>
-            <View style={{marginBottom: 150, marginTop: 10}}>
+            <View
+              style={{
+                marginBottom: SIZES.width * 0.366,
+                marginTop: SIZES.body6,
+              }}>
               <Text style={{...theme.FONTS.body1, color: '#000'}}>
                 Extra Protection
               </Text>
@@ -97,13 +108,15 @@ const DetailScreen = ({navigation}) => {
                     <Image
                       source={image.verified}
                       style={{
-                        width: 30,
-                        height: 30,
+                        width: SIZES.h1,
+                        height: SIZES.h1,
                         resizeMode: 'contain',
-                        marginRight: 5,
+                        marginRight: SIZES.width * 0.013,
                       }}
                     />
-                    <Text style={{color: '#000'}}>Travel Insurance</Text>
+                    <Text style={{color: '#000', fontSize: SIZES.body4}}>
+                      Travel Insurance
+                    </Text>
                   </View>
                   <View>
                     <Text style={{...theme.FONTS.h3, color: '#000'}}>$100</Text>
@@ -112,20 +125,44 @@ const DetailScreen = ({navigation}) => {
                 <View
                   style={[
                     styles.flex,
-                    {justifyContent: 'flex-start', marginTop: 20},
+                    {
+                      justifyContent: 'flex-start',
+                      marginTop: SIZES.width * 0.05,
+                    },
                   ]}>
-                  <CheckIcon name="check" size={15} color={'blue'} />
-                  <Text style={{marginLeft: 10}}>
+                  <CheckIcon
+                    name="check"
+                    size={SIZES.width * 0.037}
+                    color={'blue'}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: SIZES.body6,
+                      color: 'rgba(37, 40, 49, 0.50))',
+                      fontSize: SIZES.width * 0.03,
+                    }}>
                     Coverage for Accidents up to ₹10000
                   </Text>
                 </View>
                 <View
                   style={[
                     styles.flex,
-                    {justifyContent: 'flex-start', marginTop: 5},
+                    {
+                      justifyContent: 'flex-start',
+                      marginTop: SIZES.width * 0.013,
+                    },
                   ]}>
-                  <CheckIcon name="check" size={15} color={'blue'} />
-                  <Text style={{marginLeft: 10}}>
+                  <CheckIcon
+                    name="check"
+                    size={SIZES.width * 0.037}
+                    color={'blue'}
+                  />
+                  <Text
+                    style={{
+                      marginLeft: SIZES.body6,
+                      color: 'rgba(37, 40, 49, 0.50))',
+                      fontSize: SIZES.width * 0.03,
+                    }}>
                     Coverage for Accidents up to ₹10000
                   </Text>
                 </View>
@@ -142,15 +179,15 @@ const DetailScreen = ({navigation}) => {
                   onPress={handlePress}>
                   <Pluscircle
                     name="pluscircle"
-                    size={24}
+                    size={SIZES.width * 0.058}
                     color={isClicked ? '#fff' : '#327113'}
                   />
                   <Text
                     style={{
-                      marginLeft: 10,
+                      marginLeft: SIZES.body6,
                       color: isClicked ? '#fff' : '#327113',
                       fontFamily: 'Inter-Medium',
-                      fontSize: 16,
+                      fontSize: SIZES.width * 0.04,
                     }}>
                     {isClicked ? 'Insurance Added' : 'Add Insurance'}
                   </Text>
@@ -163,8 +200,10 @@ const DetailScreen = ({navigation}) => {
       <View style={styles.bottomSheet}>
         <View style={styles.flexBox}>
           <View>
-            <Text style={{fontSize: 12, color: '#808080'}}>Subtotal</Text>
-            <Text style={{...theme.FONTS.h2, color: '#000'}}>$100</Text>
+            <Text style={{fontSize: SIZES.body5, color: '#808080'}}>
+              Subtotal
+            </Text>
+            <Text style={{...theme.FONTS.h3, color: '#000'}}>$100</Text>
           </View>
           <View>
             <ButtonBox
@@ -187,12 +226,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   mainContainer: {
-    marginHorizontal: 24,
+    marginHorizontal: SIZES.width * 0.06,
   },
   bottomSheet: {
     position: 'absolute',
     bottom: 0,
-    height: 80,
+    height: SIZES.width * 0.195,
     backgroundColor: '#fff',
     width: '100%',
     shadowColor: '#000',
@@ -211,24 +250,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 24,
+    paddingHorizontal: SIZES.width * 0.06,
   },
   selectedUser: {
     width: '100%',
-    height: 55,
+    height: SIZES.width * 0.134,
     borderRadius: 8,
     borderWidth: 0.5,
     borderColor: 'rgba(13, 22, 52, 0.05)',
     justifyContent: 'center',
-    padding: 10,
+    padding: SIZES.body6,
   },
   protection: {
     width: '100%',
-    height: 220,
+    height: SIZES.width * 0.535,
     borderRadius: 8,
     borderWidth: 0.5,
     borderColor: 'rgba(13, 22, 52, 0.05)',
-    padding: 20,
+    padding: SIZES.width * 0.05,
   },
   flex: {
     flexDirection: 'row',
@@ -236,10 +275,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   ButtonBox: {
-    height: 60,
+    height: SIZES.width * 0.146,
     width: '100%',
     backgroundColor: '#F2F3F6',
-    marginTop: 15,
+    marginTop: SIZES.width * 0.034,
     borderRadius: 8,
   },
 });

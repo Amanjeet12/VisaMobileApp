@@ -1,7 +1,7 @@
 import {Image, StyleSheet, Text, View, TextInput} from 'react-native';
 import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/Entypo'; // Import your desired icon library
-import {image} from '../constant';
+import {SIZES, image} from '../constant';
 
 const IconTextInput = ({placeholder, iconName}) => {
   const [isFocused, setIsFocused] = useState(false);
@@ -11,7 +11,7 @@ const IconTextInput = ({placeholder, iconName}) => {
     <View style={styles.container}>
       <View
         style={{
-          width: '10%',
+          width: '15%',
           alignItems: 'center',
         }}>
         <Image source={iconName} style={styles.customImage} />
@@ -33,31 +33,32 @@ export default IconTextInput;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
+    marginTop: SIZES.body6,
     borderRadius: 5,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#F5F6F6',
+    paddingRight: SIZES.width * 0.038,
   },
   title: {
-    fontSize: 12,
-    paddingLeft: 3,
+    fontSize: SIZES.body5,
+    paddingLeft: SIZES.width * 0.1,
   },
   input: {
-    height: 50,
-    fontSize: 14,
+    height: SIZES.extralarge,
+    fontSize: SIZES.body4,
     backgroundColor: '#F5F6F6',
-    borderBottomRightRadius: 10,
-    borderTopRightRadius: 10,
+    borderBottomRightRadius: SIZES.body6,
+    borderTopRightRadius: SIZES.body6,
   },
   customImageContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 10, // Adjust the spacing as needed
+    marginLeft: SIZES.body6, // Adjust the spacing as needed
     backgroundColor: '#000',
   },
   customImage: {
-    width: 24, // Adjust the width and height as needed
-    height: 24,
+    width: SIZES.width * 0.06, // Adjust the width and height as needed
+    height: SIZES.width * 0.06,
   },
 });

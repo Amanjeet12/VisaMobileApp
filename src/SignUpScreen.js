@@ -41,8 +41,7 @@ const SingUpScreen = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
+    <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
       <KeyboardAwareScrollView
         contentContainerStyle={styles.scrollContainer}
@@ -121,6 +120,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: SIZES.horizontal,
+    backgroundColor: '#fff',
   },
   mainContainer: {
     marginTop: SIZES.width * 0.09,

@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {SIZES, image} from '../constant';
 import Icon from 'react-native-vector-icons/AntDesign';
 import {launchImageLibrary} from 'react-native-image-picker';
+import Cross from 'react-native-vector-icons/AntDesign';
 
 const ImageBox = ({placeholder}) => {
   console.log(SIZES.width * 0.5);
@@ -51,6 +52,13 @@ const ImageBox = ({placeholder}) => {
             <Icon name="plussquare" size={35} color="#327113" />
           </View>
         )}
+        {imageSource ? (
+          <TouchableOpacity
+            style={{position: 'absolute', right: 0}}
+            onPress={() => setImageSource(null)}>
+            <Cross name="closecircle" size={24} color={'green'} />
+          </TouchableOpacity>
+        ) : null}
       </View>
     </TouchableOpacity>
   );

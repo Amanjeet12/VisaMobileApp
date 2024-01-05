@@ -36,10 +36,9 @@ const UploadPassportScreen = ({navigation}) => {
     {id: 1, title: 'Male'},
     {id: 2, title: 'Female'},
   ];
-
+  console.log(SIZES.width * 0.135);
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
+    <SafeAreaView style={[styles.container]}>
       <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
       <ScrollView
         style={styles.ScrollView}
@@ -60,7 +59,11 @@ const UploadPassportScreen = ({navigation}) => {
           </Text>
         </View>
         <View
-          style={{flexDirection: 'row', alignItems: 'center', marginTop: 5}}>
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: SIZES.width * 0.015,
+          }}>
           <TouchableOpacity
             style={{flexDirection: 'row', alignItems: 'center'}}
             onPress={() => setChecked('first')}
@@ -74,7 +77,11 @@ const UploadPassportScreen = ({navigation}) => {
             <Text style={{...theme.FONTS.body1, color: '#000'}}>Male</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{flexDirection: 'row', alignItems: 'center', marginLeft: 10}}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginLeft: SIZES.body6,
+            }}
             onPress={() => setChecked('second')}
             activeOpacity={0.7}>
             <RadioButton
@@ -98,7 +105,7 @@ const UploadPassportScreen = ({navigation}) => {
             placeholder={'Enter First Name'}
           />
         </View>
-        <View style={{paddingBottom: 25}}>
+        <View style={{paddingBottom: SIZES.width * 0.061}}>
           <CommonTextInput
             title={'Last Name'}
             placeholder={'Enter Last Name'}
@@ -111,11 +118,11 @@ const UploadPassportScreen = ({navigation}) => {
             options={optionsData}
           />
         </View>
-        <View style={{marginTop: 20}}>
+        <View style={{marginTop: SIZES.width * 0.05}}>
           <DateBox placeholder={'DOB'} />
         </View>
         <View>
-          <View style={{marginTop: 20}}>
+          <View style={{marginTop: SIZES.width * 0.05}}>
             <DropDown
               image={image.apple}
               title={'Select Gender'}
@@ -127,26 +134,30 @@ const UploadPassportScreen = ({navigation}) => {
             placeholder={'Enter Place Birth'}
           />
         </View>
-        <View style={{marginTop: 25}}>
+        <View style={{marginTop: SIZES.width * 0.061}}>
           <DateBox placeholder={'Date Of Issue'} />
         </View>
-        <View style={{marginTop: 25}}>
+        <View style={{marginTop: SIZES.width * 0.061}}>
           <DateBox placeholder={'Date Of Expiry'} />
         </View>
         <View
           style={{
-            marginTop: 20,
-            marginBottom: 30,
+            marginTop: SIZES.width * 0.05,
+            marginBottom: SIZES.width * 0.075,
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
           <TouchableOpacity style={styles.buttonBox}>
-            <Text style={{fontSize: 16, color: '#000'}}>Skip</Text>
+            <Text style={{fontSize: SIZES.width * 0.04, color: '#000'}}>
+              Skip
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.buttonBox2}
             onPress={() => navigation.navigate('UploadPassportBackScreen')}>
-            <Text style={{fontSize: 16, color: '#fff'}}>Next</Text>
+            <Text style={{fontSize: SIZES.width * 0.04, color: '#fff'}}>
+              Next
+            </Text>
             <Image source={image.arrow} style={styles.Icon} />
           </TouchableOpacity>
         </View>
@@ -160,23 +171,24 @@ export default UploadPassportScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: SIZES.width * 0.05,
+    backgroundColor: '#fff',
   },
   ScrollView: {
     flexGrow: 1,
-    paddingBottom: 50,
+    paddingBottom: SIZES.extralarge,
   },
   buttonBox: {
-    height: 60,
+    height: SIZES.width * 0.135,
     backgroundColor: '#fff',
     width: '48%',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 8,
-    borderWidth: 2,
+    borderWidth: 1,
   },
   buttonBox2: {
-    height: 60,
+    height: SIZES.width * 0.135,
     backgroundColor: '#327113',
     width: '48%',
     alignItems: 'center',
@@ -185,8 +197,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   Icon: {
-    width: 20,
-    height: 20,
+    width: SIZES.width * 0.05,
+    height: SIZES.width * 0.05,
     resizeMode: 'cover',
     marginLeft: 5,
   },

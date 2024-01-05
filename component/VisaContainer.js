@@ -1,6 +1,6 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {image} from '../constant';
+import {SIZES, image} from '../constant';
 
 const VisaContainer = () => {
   return (
@@ -15,15 +15,23 @@ const VisaContainer = () => {
           <Text style={[styles.description, {textAlign: 'left'}]}>UAE</Text>
         </View>
       </View>
-      <View style={[styles.flexbox, {marginTop: 20}]}>
+      <View style={[styles.flexbox, {marginTop: SIZES.width * 0.05}]}>
         <View>
-          <Text style={[styles.title, {fontSize: 14, lineHeight: 20}]}>
+          <Text
+            style={[
+              styles.title,
+              {fontSize: SIZES.body5, lineHeight: SIZES.width * 0.05},
+            ]}>
             Days of stay
           </Text>
           <Text style={styles.description}>90 days</Text>
         </View>
         <View>
-          <Text style={[styles.title, {fontSize: 14, lineHeight: 20}]}>
+          <Text
+            style={[
+              styles.title,
+              {fontSize: SIZES.body5, lineHeight: SIZES.width * 0.05},
+            ]}>
             Entry Type
           </Text>
           <Text style={[styles.description, {textAlign: 'right'}]}>Single</Text>
@@ -37,13 +45,17 @@ const VisaContainer = () => {
           styles.flexbox,
           {
             position: 'absolute',
-            bottom: 10,
+            bottom: SIZES.body6,
             width: '100%',
-            left: 25,
+            left: SIZES.width * 0.061,
           },
         ]}>
         <View>
-          <Text style={[styles.title, {fontSize: 14, lineHeight: 20}]}>
+          <Text
+            style={[
+              styles.title,
+              {fontSize: SIZES.width * 0.035, lineHeight: SIZES.width * 0.05},
+            ]}>
             Total Price{' '}
           </Text>
         </View>
@@ -55,12 +67,16 @@ const VisaContainer = () => {
         <Image
           source={image.aeroplane}
           style={{
-            width: 300,
-            height: 40,
+            width: SIZES.width * 0.73,
+            height: SIZES.width * 0.098,
             resizeMode: 'stretch',
           }}
         />
-        <Text style={[styles.description, {paddingLeft: 15, color: '#000'}]}>
+        <Text
+          style={[
+            styles.description,
+            {paddingLeft: SIZES.width * 0.037, color: '#000'},
+          ]}>
           Tourism
         </Text>
       </View>
@@ -72,29 +88,29 @@ export default VisaContainer;
 
 const styles = StyleSheet.create({
   container: {
-    height: 200,
+    height: SIZES.width * 0.48,
     backgroundColor: '#fff',
-    borderRadius: 20,
-    padding: 15,
-    paddingHorizontal: 25,
+    borderRadius: SIZES.width * 0.05,
+    padding: SIZES.width * 0.037,
+    paddingHorizontal: SIZES.width * 0.061,
   },
   smallContainer: {
-    width: 25,
-    height: 25,
+    width: SIZES.width * 0.061,
+    height: SIZES.width * 0.061,
     backgroundColor: '#327113',
-    borderRadius: 30,
+    borderRadius: SIZES.h1,
     position: 'absolute',
-    bottom: 40,
-    left: -13,
+    bottom: SIZES.largeTitle,
+    left: -SIZES.width * 0.032,
   },
   smallContainer2: {
-    width: 25,
-    height: 25,
+    width: SIZES.width * 0.061,
+    height: SIZES.width * 0.061,
     backgroundColor: '#327113',
-    borderRadius: 30,
+    borderRadius: SIZES.h1,
     position: 'absolute',
-    bottom: 40,
-    right: -13,
+    bottom: SIZES.largeTitle,
+    right: -SIZES.width * 0.032,
   },
   flexbox: {
     flexDirection: 'row',
@@ -103,30 +119,30 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#22313F',
-    fontSize: 18,
+    fontSize: SIZES.width * 0.044,
     fontWeight: '500',
-    lineHeight: 30,
+    lineHeight: SIZES.h1,
   },
   divider: {
     position: 'absolute',
     width: '100%',
     height: 1,
-    left: 25,
-    bottom: 50,
+    left: SIZES.width * 0.061,
+    bottom: SIZES.extralarge,
     borderBottomWidth: 1,
     borderBottomColor: '#BDBDBD', // Adjust color as needed
     borderStyle: 'dotted',
   },
   description: {
-    fontSize: 12,
+    fontSize: SIZES.width * 0.03,
     color: '#808991',
     fontWeight: '400',
-    paddingTop: 2,
+    paddingTop: SIZES.width * 0.005,
   },
   aeroplane: {
     position: 'absolute',
-    top: 7,
-    left: 25,
+    top: SIZES.width * 0.015,
+    left: SIZES.width * 0.061,
     alignItems: 'center',
   },
 });

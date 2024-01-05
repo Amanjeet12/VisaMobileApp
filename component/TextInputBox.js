@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import {TextInput as RNTextInput, StyleSheet} from 'react-native';
 import {SIZES} from '../constant';
@@ -34,7 +35,7 @@ const TextInput = ({onChangeText, placeholder}) => {
       onFocus={handleFocus}
       onBlur={handleBlur}
       placeholder={placeholder}
-      placeholderTextColor="black" // Set the placeholder color to black
+      placeholderTextColor="black"
     />
   );
 };
@@ -43,8 +44,8 @@ const styles = StyleSheet.create({
   input: {
     height: SIZES.extralarge,
     borderBottomWidth: 1,
-    // paddingHorizontal: 8,
     marginBottom: SIZES.body3,
+    fontSize: SIZES.body4,
   },
 });
 

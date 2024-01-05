@@ -200,12 +200,8 @@ const OnboardingScreen = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
-      <StatusBar
-        backgroundColor={theme.background}
-        barStyle={isDarkTheme ? 'dark-content' : 'light-content'}
-      />
+    <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
       <FlatList
         ref={ref}
         onMomentumScrollEnd={updateCurrentSlideIndex}
@@ -229,6 +225,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fff',
   },
   text: {
     // Add any additional styles for your text here

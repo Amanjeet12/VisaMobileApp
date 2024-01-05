@@ -11,7 +11,7 @@ import {
 import React, {useState} from 'react';
 import {useDarkTheme} from '../constant/ThemeContext';
 import Reward from '../component/Reward';
-import {image} from '../constant';
+import {SIZES, image} from '../constant';
 
 const RewardScreen = () => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
@@ -32,8 +32,7 @@ const RewardScreen = () => {
   ];
 
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
+    <SafeAreaView style={[styles.container, {backgroundColor: '#fff'}]}>
       <StatusBar backgroundColor={'#327113'} barStyle={'light-content'} />
 
       <View style={styles.mainContainer}>
@@ -62,18 +61,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SIZES.width * 0.05,
   },
   Header: {
-    marginTop: 10,
+    marginTop: SIZES.body6,
     alignItems: 'center',
   },
   textTitle: {
-    fontSize: 24,
+    fontSize: SIZES.h3,
     color: '#000',
     fontWeight: '500',
   },
   rewardSection: {
-    marginTop: 20,
+    marginTop: SIZES.width * 0.05,
   },
 });

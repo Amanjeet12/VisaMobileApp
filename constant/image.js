@@ -29,6 +29,7 @@ const calendars = require('../asserts/images/calendar.png');
 const phone = require('../asserts/images/Phone.png');
 const mail = require('../asserts/images/Mail.png');
 const avatar = require('../asserts/images/pro.png');
+const flagUSE = require('../asserts/images/uaeFlag.png');
 
 export default {
   image,
@@ -62,4 +63,5 @@ export default {
   phone,
   mail,
   avatar,
+  flagUSE,
 };

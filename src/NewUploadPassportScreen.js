@@ -17,9 +17,9 @@ import CommonTextInput from '../component/CommonTextInput';
 import {RadioButton} from 'react-native-paper';
 import DateBox from '../component/DateBox';
 import DropDown from '../component/DropDown';
-import {image} from '../constant';
+import {SIZES, image} from '../constant';
 
-const UploadPassportScreen = ({navigation}) => {
+const NewUploadPassportScreen = ({navigation}) => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
   const [inputValue, setInputValue] = useState('');
   const [checked, setChecked] = useState('first');
@@ -29,8 +29,8 @@ const UploadPassportScreen = ({navigation}) => {
   };
 
   const optionsData = [
-    {id: 1, title: 'India', image: image.google},
-    {id: 2, title: 'Australia', image: image.apple},
+    {id: 1, title: 'India', image: image.flagIND},
+    {id: 2, title: 'UAE', image: image.flagUSE},
   ];
   const optionsData2 = [
     {id: 1, title: 'Male'},
@@ -38,12 +38,8 @@ const UploadPassportScreen = ({navigation}) => {
   ];
 
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
-      <StatusBar
-        backgroundColor={theme.background}
-        barStyle={isDarkTheme ? 'dark-content' : 'light-content'}
-      />
+    <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
       <ScrollView
         style={styles.ScrollView}
         showsVerticalScrollIndicator={false}>
@@ -57,13 +53,17 @@ const UploadPassportScreen = ({navigation}) => {
             }
           />
         </View>
-        <View style={{marginTop: 20}}>
-          <Text style={{...theme.FONTS.h2, color: '#000'}}>
+        <View style={{marginTop: SIZES.padding}}>
+          <Text style={{...theme.FONTS.h4, color: '#000'}}>
             Passport Front Details
           </Text>
         </View>
         <View
-          style={{flexDirection: 'row', alignItems: 'center', marginTop: 10}}>
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: SIZES.width * 0.013,
+          }}>
           <TouchableOpacity
             style={{flexDirection: 'row', alignItems: 'center'}}
             onPress={() => setChecked('first')}
@@ -77,7 +77,11 @@ const UploadPassportScreen = ({navigation}) => {
             <Text style={{...theme.FONTS.body1, color: '#000'}}>Male</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={{flexDirection: 'row', alignItems: 'center', marginLeft: 10}}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginLeft: SIZES.body6,
+            }}
             onPress={() => setChecked('second')}
             activeOpacity={0.7}>
             <RadioButton
@@ -101,7 +105,7 @@ const UploadPassportScreen = ({navigation}) => {
             placeholder={'Enter First Name'}
           />
         </View>
-        <View style={{paddingBottom: 25}}>
+        <View style={{paddingBottom: SIZES.width * 0.061}}>
           <CommonTextInput
             title={'Last Name'}
             placeholder={'Enter Last Name'}
@@ -114,11 +118,11 @@ const UploadPassportScreen = ({navigation}) => {
             options={optionsData}
           />
         </View>
-        <View style={{marginTop: 20}}>
+        <View style={{marginTop: SIZES.width * 0.05}}>
           <DateBox placeholder={'DOB'} />
         </View>
         <View>
-          <View style={{marginTop: 20}}>
+          <View style={{marginTop: SIZES.width * 0.05}}>
             <DropDown
               image={image.apple}
               title={'Select Gender'}
@@ -130,23 +134,25 @@ const UploadPassportScreen = ({navigation}) => {
             placeholder={'Enter Place Birth'}
           />
         </View>
-        <View style={{marginTop: 20}}>
+        <View style={{marginTop: 25}}>
           <DateBox placeholder={'Date Of Issue'} />
         </View>
-        <View style={{marginTop: 20}}>
+        <View style={{marginTop: 25}}>
           <DateBox placeholder={'Date Of Expiry'} />
         </View>
         <View
           style={{
-            marginTop: 20,
-            marginBottom: 30,
+            marginTop: SIZES.width * 0.05,
+            marginBottom: SIZES.width * 0.075,
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
           <TouchableOpacity
             style={styles.buttonBox2}
             onPress={() => navigation.navigate('SaveUploadPassportBackScreen')}>
-            <Text style={{fontSize: 16, color: '#fff'}}>Next</Text>
+            <Text style={{fontSize: SIZES.width * 0.04, color: '#fff'}}>
+              Next
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -154,19 +160,20 @@ const UploadPassportScreen = ({navigation}) => {
   );
 };
 
-export default UploadPassportScreen;
+export default NewUploadPassportScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: SIZES.width * 0.05,
+    backgroundColor: '#fff',
   },
   ScrollView: {
     flexGrow: 1,
-    paddingBottom: 50,
+    paddingBottom: SIZES.extralarge,
   },
   buttonBox: {
-    height: 60,
+    height: SIZES.width * 0.135,
     backgroundColor: '#fff',
     width: '48%',
     alignItems: 'center',
@@ -175,7 +182,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   buttonBox2: {
-    height: 60,
+    height: SIZES.width * 0.135,
     backgroundColor: '#327113',
     width: '100%',
     alignItems: 'center',
@@ -184,9 +191,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   Icon: {
-    width: 20,
-    height: 20,
+    width: SIZES.width * 0.05,
+    height: SIZES.width * 0.05,
     resizeMode: 'cover',
-    marginLeft: 5,
+    marginLeft: SIZES.width * 0.015,
   },
 });

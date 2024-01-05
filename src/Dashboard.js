@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   Image,
   ImageBackground,
@@ -9,32 +10,21 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
-import {useDarkTheme} from '../constant/ThemeContext';
+import React, {useEffect, useState} from 'react';
 import {SIZES, image} from '../constant';
 import IconTextInput from '../component/IconTextInput';
 import ButtonBox from '../component/ButtonBox';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import {useDarkTheme} from '../constant/ThemeContext';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
-// import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-const DashboardScreen = ({navigation}) => {
+const Dashboard = () => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
+
   let RBSheetRef = null;
   const [selected, setSelected] = useState(
     new Date().toISOString().split('T')[0],
   );
-
-  const calculatePadding = () => {
-    // Set specific padding values based on screen height
-    if (SIZES.height <= 700) {
-      return SIZES.height * 0.8;
-    } else if (SIZES.height > 700 && SIZES.height <= 800) {
-      return SIZES.height * 0.78;
-    } else {
-      return SIZES.height * 0.68;
-    }
-  };
 
   const [initial, setInitial] = useState('');
   const [returning, setReturning] = useState('');
@@ -68,72 +58,74 @@ const DashboardScreen = ({navigation}) => {
       RBSheetRef.close();
     }
   };
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'#327113'} barStyle={'light-content'} />
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View>
-          <View style={styles.imageContainer}>
-            <ImageBackground
-              source={image.map}
-              style={styles.image}
-              imageStyle={{resizeMode: 'contain'}}>
-              <View style={styles.textContainer}>
-                <Text style={styles.title}>Discover{'\n'}a new world</Text>
-              </View>
-              <View
-                style={{
-                  position: 'absolute',
-                  left: '25%',
-                }}>
-                <Image source={image.logo} style={styles.logoImage} />
-              </View>
-            </ImageBackground>
-          </View>
-          <View style={[styles.whiteContainer, {height: calculatePadding()}]}>
-            <View>
-              <View
-                style={[styles.iconContainer, {marginTop: SIZES.width * 0.05}]}>
-                <View>
-                  <Text style={styles.titleFont}>From</Text>
+      <ScrollView style={{flex: 1, marginBottom: SIZES.width * 0.183}}>
+        <>
+          <View
+            style={{
+              flex: 0.3,
+            }}>
+            <View style={styles.imageContainer}>
+              <ImageBackground
+                source={image.map}
+                style={styles.image}
+                imageStyle={{resizeMode: 'contain'}}>
+                <View style={styles.textContainer}>
+                  <Text style={styles.title}>Discover{'\n'}a new world</Text>
                 </View>
-                <IconTextInput
-                  placeholder="Enter your location"
-                  iconName={image.takeoff}
-                />
-              </View>
-              {/* <View
-                style={{
-                  position: 'absolute',
-                  bottom: 57,
-                  right: 10,
-                  width: 25,
-                  height: 25,
-                  borderRadius: 30,
-                  zIndex: 999,
-                }}>
-                <TouchableOpacity style={{}}>
-                  <View>
-                    <Image
-                      source={image.converter}
-                      style={{width: 25, height: 25, resizeMode: 'contain'}}
-                    />
-                  </View>
-                </TouchableOpacity>
-              </View> */}
-
-              <View style={styles.iconContainer}>
-                <View>
-                  <Text style={styles.titleFont}>To</Text>
+                <View
+                  style={{
+                    position: 'absolute',
+                    left: '25%',
+                  }}>
+                  <Image source={image.logo} style={styles.logoImage} />
                 </View>
-                <IconTextInput
-                  placeholder="Enter your Destination"
-                  iconName={image.landing}
-                />
-              </View>
+              </ImageBackground>
             </View>
+            <View
+              style={{
+                position: 'absolute',
+                height: 60,
+                width: '100%',
+                backgroundColor: '#327113',
+                bottom: -40,
+                zIndex: 0, // Remove this line or set it to a value >= 0
+              }}
+            />
+          </View>
 
+          <View
+            style={[
+              styles.whiteContainer,
+              {
+                flex: 0.7,
+                backgroundColor: '#fff',
+                paddingBottom: 0,
+                position: 'relative',
+                zIndex: 1, // Remove this line or set it to a value >= 0
+              },
+            ]}>
+            <View
+              style={[styles.iconContainer, {marginTop: SIZES.width * 0.05}]}>
+              <View>
+                <Text style={styles.titleFont}>From</Text>
+              </View>
+              <IconTextInput
+                placeholder="Enter your location"
+                iconName={image.takeoff}
+              />
+            </View>
+            <View style={styles.iconContainer}>
+              <View>
+                <Text style={styles.titleFont}>To</Text>
+              </View>
+              <IconTextInput
+                placeholder="Enter your Destination"
+                iconName={image.landing}
+              />
+            </View>
             <View style={{marginTop: SIZES.width * 0.037}}>
               <View>
                 <Text style={styles.titleFont}>Departure Date</Text>
@@ -223,10 +215,10 @@ const DashboardScreen = ({navigation}) => {
                   padding: SIZES.width * 0.061,
                   paddingTop: SIZES.largeTitle,
                 }}>
-                <Text style={{...theme.FONTS.h1, color: '#000'}}>
+                <Text style={{...theme.FONTS.h4, color: '#000'}}>
                   Select Date
                 </Text>
-                <Text style={{...theme.FONTS.body1}}>
+                <Text style={{...theme.FONTS.body1, color: '#808080'}}>
                   {formatSelectedDate(selected)}
                 </Text>
                 <Calendar
@@ -244,7 +236,7 @@ const DashboardScreen = ({navigation}) => {
                     selectedDayBackgroundColor: 'green',
                     todayTextColor: 'green',
                     arrowColor: 'green',
-                    textDisabledColor: '#d9e',
+                    textDisabledColor: '#000',
                   }}
                 />
                 <View
@@ -266,16 +258,17 @@ const DashboardScreen = ({navigation}) => {
               </View>
             </RBSheet>
           </View>
-        </View>
+        </>
       </ScrollView>
     </SafeAreaView>
   );
 };
 
+export default Dashboard;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#327113',
+    backgroundColor: '#fff',
   },
   imageContainer: {
     height: SIZES.height * 0.32,
@@ -294,7 +287,7 @@ const styles = StyleSheet.create({
     marginBottom: SIZES.h1,
   },
   title: {
-    fontSize: SIZES.width * 0.083,
+    fontSize: SIZES.width * 0.086,
     color: '#fff',
     fontWeight: '700',
     lineHeight: SIZES.largeTitle,
@@ -345,6 +338,3 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
 });
-
-export default DashboardScreen;
-SIZES.width * 0.044;

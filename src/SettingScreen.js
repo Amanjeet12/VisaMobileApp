@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDarkTheme} from '../constant/ThemeContext';
-import {image} from '../constant';
+import {SIZES, image} from '../constant';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Arrow from 'react-native-vector-icons/Entypo';
 
@@ -23,7 +23,7 @@ const SettingScreen = () => {
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'#327113'} barStyle={'light-content'} />
       <View style={styles.profileContainer}>
-        <View style={{marginTop: 20}}>
+        <View style={{marginTop: SIZES.width * 0.04}}>
           <Text style={{...theme.FONTS.h2, color: '#fff', fontWeight: '500'}}>
             My Profile
           </Text>
@@ -35,13 +35,13 @@ const SettingScreen = () => {
             </TouchableOpacity>
           </View>
           <View style={styles.textContainer}>
-            <Text style={{...theme.FONTS.h2, color: '#fff'}}>Jos Creative</Text>
+            <Text style={{...theme.FONTS.h3, color: '#fff'}}>Jos Creative</Text>
             <Text style={{...theme.FONTS.body1, color: '#fff', marginTop: -5}}>
               josphamdes@gmail.com
             </Text>
           </View>
           <TouchableOpacity style={styles.iconContainer}>
-            <Icon name="edit" size={24} color={'#fff'} />
+            <Icon name="edit" size={SIZES.width * 0.06} color={'#fff'} />
           </TouchableOpacity>
         </View>
       </View>
@@ -51,15 +51,27 @@ const SettingScreen = () => {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 source={image.password}
-                style={{width: 25, height: 25, resizeMode: 'contain'}}
+                style={{
+                  width: SIZES.width * 0.061,
+                  height: SIZES.width * 0.061,
+                  resizeMode: 'contain',
+                }}
               />
               <Text
-                style={{...theme.FONTS.body1, color: '#000', paddingLeft: 15}}>
+                style={{
+                  ...theme.FONTS.body1,
+                  color: '#000',
+                  paddingLeft: SIZES.body4,
+                }}>
                 Reset Password
               </Text>
             </View>
             <View>
-              <Arrow name="chevron-right" size={24} color={'#ccc'} />
+              <Arrow
+                name="chevron-right"
+                size={SIZES.width * 0.06}
+                color={'#ccc'}
+              />
             </View>
           </TouchableOpacity>
           <View style={styles.border} />
@@ -67,15 +79,27 @@ const SettingScreen = () => {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 source={image.profile}
-                style={{width: 25, height: 25, resizeMode: 'contain'}}
+                style={{
+                  width: SIZES.width * 0.061,
+                  height: SIZES.width * 0.061,
+                  resizeMode: 'contain',
+                }}
               />
               <Text
-                style={{...theme.FONTS.body1, color: '#000', paddingLeft: 15}}>
+                style={{
+                  ...theme.FONTS.body1,
+                  color: '#000',
+                  paddingLeft: SIZES.body4,
+                }}>
                 Contact Support
               </Text>
             </View>
             <View>
-              <Arrow name="chevron-right" size={24} color={'#ccc'} />
+              <Arrow
+                name="chevron-right"
+                size={SIZES.width * 0.06}
+                color={'#ccc'}
+              />
             </View>
           </TouchableOpacity>
           <View style={styles.border} />
@@ -83,15 +107,27 @@ const SettingScreen = () => {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 source={image.profile}
-                style={{width: 25, height: 25, resizeMode: 'contain'}}
+                style={{
+                  width: SIZES.width * 0.061,
+                  height: SIZES.width * 0.061,
+                  resizeMode: 'contain',
+                }}
               />
               <Text
-                style={{...theme.FONTS.body1, color: '#000', paddingLeft: 15}}>
+                style={{
+                  ...theme.FONTS.body1,
+                  color: '#000',
+                  paddingLeft: SIZES.body4,
+                }}>
                 Privacy Policy
               </Text>
             </View>
             <View>
-              <Arrow name="chevron-right" size={24} color={'#ccc'} />
+              <Arrow
+                name="chevron-right"
+                size={SIZES.width * 0.06}
+                color={'#ccc'}
+              />
             </View>
           </TouchableOpacity>
           <View style={styles.border} />
@@ -99,15 +135,27 @@ const SettingScreen = () => {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 source={image.profile}
-                style={{width: 25, height: 25, resizeMode: 'contain'}}
+                style={{
+                  width: SIZES.width * 0.061,
+                  height: SIZES.width * 0.061,
+                  resizeMode: 'contain',
+                }}
               />
               <Text
-                style={{...theme.FONTS.body1, color: '#000', paddingLeft: 15}}>
+                style={{
+                  ...theme.FONTS.body1,
+                  color: '#000',
+                  paddingLeft: SIZES.body4,
+                }}>
                 Terms & Conditions
               </Text>
             </View>
             <View>
-              <Arrow name="chevron-right" size={24} color={'#ccc'} />
+              <Arrow
+                name="chevron-right"
+                size={SIZES.width * 0.06}
+                color={'#ccc'}
+              />
             </View>
           </TouchableOpacity>
           <View style={styles.border} />
@@ -115,17 +163,43 @@ const SettingScreen = () => {
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 source={image.logout}
-                style={{width: 25, height: 25, resizeMode: 'contain'}}
+                style={{
+                  width: SIZES.width * 0.061,
+                  height: SIZES.width * 0.061,
+                  resizeMode: 'contain',
+                }}
               />
               <Text
-                style={{...theme.FONTS.body1, color: '#000', paddingLeft: 15}}>
+                style={{
+                  ...theme.FONTS.body1,
+                  color: '#000',
+                  paddingLeft: SIZES.body4,
+                }}>
                 Logout
               </Text>
             </View>
             <View>
-              <Arrow name="chevron-right" size={24} color={'#ccc'} />
+              <Arrow
+                name="chevron-right"
+                size={SIZES.width * 0.064}
+                color={'#ccc'}
+              />
             </View>
           </TouchableOpacity>
+          <View
+            style={{
+              position: 'absolute',
+              bottom: -SIZES.width * 0.18,
+              left: SIZES.width * 0.3,
+            }}>
+            <Text
+              style={{
+                color: 'rgba(0, 0, 0, 0.50)',
+                fontSize: SIZES.width * 0.043,
+              }}>
+              Version 1.0
+            </Text>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -143,9 +217,9 @@ const styles = StyleSheet.create({
     height: '32%',
     width: '100%',
     backgroundColor: '#327113',
-    borderBottomLeftRadius: 36,
-    borderBottomRightRadius: 36,
-    padding: 20,
+    borderBottomLeftRadius: SIZES.width * 0.09,
+    borderBottomRightRadius: SIZES.width * 0.09,
+    padding: SIZES.width * 0.05,
   },
   imageContainer: {
     width: '100%',
@@ -158,36 +232,36 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    height: 100,
-    marginTop: 30,
+    height: SIZES.width * 0.25,
+    marginTop: SIZES.width * 0.079,
   },
   image: {
-    width: '80%',
-    height: '90%',
+    width: SIZES.width * 0.195,
+    height: SIZES.width * 0.195,
     resizeMode: 'cover',
     borderRadius: 60,
   },
   textContainer: {
     width: '60%',
     height: '100%',
-    padding: 10,
+    padding: SIZES.body6,
   },
   iconContainer: {
     width: '10%',
     height: '100%',
     alignItems: 'center',
-    paddingTop: 15,
+    paddingTop: SIZES.body2,
   },
   whiteContainer: {
     height: '60%',
     width: '100%',
     paddingHorizontal: 30,
-    paddingVertical: 15,
+    paddingVertical: SIZES.body4,
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    height: 60,
+    height: SIZES.width * 0.135,
     alignItems: 'center',
   },
   border: {

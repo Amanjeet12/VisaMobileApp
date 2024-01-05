@@ -7,7 +7,7 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {image} from '../constant';
+import {SIZES, image} from '../constant';
 
 const Reward = ({title, description, rewardImage}) => {
   return (
@@ -16,7 +16,7 @@ const Reward = ({title, description, rewardImage}) => {
         source={image.map}
         style={{
           width: '100%',
-          height: 130,
+          height: SIZES.width * 0.315,
           flexDirection: 'row',
         }}
         imageStyle={{resizeMode: 'cover'}}>
@@ -28,12 +28,19 @@ const Reward = ({title, description, rewardImage}) => {
         </View>
         <View style={{width: '10%'}} />
         <View style={styles.textContainer}>
-          <Text style={{fontSize: 13, color: '#fff'}}>{title}</Text>
-          <Text style={{fontSize: 10, color: '#fff', marginTop: 5}}>
+          <Text style={{fontSize: SIZES.width * 0.032, color: '#fff'}}>
+            {title}
+          </Text>
+          <Text
+            style={{
+              fontSize: SIZES.body6,
+              color: '#fff',
+              marginTop: SIZES.width * 0.012,
+            }}>
             {description}
           </Text>
           <TouchableOpacity style={styles.buttonContainer}>
-            <Text style={{color: '#fff', fontSize: 10}}>Get Now</Text>
+            <Text style={{color: '#fff', fontSize: SIZES.body6}}>Get Now</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
@@ -45,48 +52,48 @@ export default Reward;
 
 const styles = StyleSheet.create({
   container: {
-    height: 130,
+    height: SIZES.width * 0.315,
     width: '100%',
     borderWidth: 1,
     backgroundColor: '#327113',
     borderRadius: 8,
     position: 'relative',
     borderColor: '#327113',
-    marginTop: 10,
+    marginTop: SIZES.body6,
   },
   whiteCircleTop: {
     position: 'absolute',
-    width: 30,
-    height: 30,
+    width: SIZES.h1,
+    height: SIZES.h1,
     backgroundColor: '#fff',
-    borderRadius: 30,
-    top: -15,
-    left: 140,
+    borderRadius: SIZES.h1,
+    top: -SIZES.width * 0.037,
+    left: SIZES.width * 0.341,
   },
   whiteCircleBottom: {
     position: 'absolute',
-    width: 30,
-    height: 30,
+    width: SIZES.h1,
+    height: SIZES.h1,
     backgroundColor: '#fff',
     borderRadius: 30,
-    bottom: -15,
-    left: 140,
+    bottom: -SIZES.width * 0.037,
+    left: SIZES.width * 0.341,
   },
   dottedDivider: {
     position: 'absolute',
     width: 1,
-    height: 130,
+    height: SIZES.width * 0.315,
     borderStyle: 'dotted',
     borderWidth: 1,
     borderColor: '#fff',
-    top: 15,
-    left: 155,
+    top: SIZES.width * 0.037,
+    left: SIZES.width * 0.377,
   },
   ImageContainer: {
     position: 'relative',
     width: '38%',
     height: '100%',
-    padding: 15,
+    padding: SIZES.width * 0.037,
   },
   image: {
     width: '100%',
@@ -96,16 +103,16 @@ const styles = StyleSheet.create({
   textContainer: {
     width: '52%',
     height: '100%',
-    padding: 15,
+    padding: SIZES.width * 0.037,
   },
   buttonContainer: {
-    width: 100,
-    height: 35,
+    width: SIZES.width * 0.245,
+    height: SIZES.width * 0.085,
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 30,
-    marginTop: 10,
+    marginTop: SIZES.body6,
     borderColor: '#fff',
   },
 });

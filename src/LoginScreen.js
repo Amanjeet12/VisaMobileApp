@@ -40,8 +40,7 @@ const LoginScreen = ({navigation}) => {
   };
 
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
+    <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
       <KeyboardAwareScrollView
         contentContainerStyle={styles.scrollContainer}
@@ -105,7 +104,7 @@ const LoginScreen = ({navigation}) => {
           <Text
             style={[
               [styles.fontDescription],
-              {...theme.FONTS.body1, marginRight: 5},
+              {...theme.FONTS.body1, marginRight: SIZES.width * 0.013},
             ]}>
             Don’t Have an Account?
           </Text>
@@ -130,6 +129,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: SIZES.horizontal,
+    backgroundColor: '#fff',
   },
   mainContainer: {
     marginTop: SIZES.width * 0.25,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
   },
   buttonBox: {
     height: SIZES.width * 0.146,
-    backgroundColor: '#F2F3F6',
+    backgroundColor: '#ECEFF6',
     width: '48%',
     alignItems: 'center',
     justifyContent: 'center',

@@ -11,14 +11,11 @@ import {
 import React, {useState} from 'react';
 import {useDarkTheme} from '../constant/ThemeContext';
 import Transaction from '../component/Transaction';
+import {SIZES} from '../constant';
 
 const TransactionScreen = ({navigation}) => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
-
-  // State to keep track of the selected button
   const [selectedButton, setSelectedButton] = useState('Issued');
-
-  // Function to handle button clicks and update the selected button
   const handleButtonClick = buttonName => {
     setSelectedButton(buttonName);
   };
@@ -56,8 +53,7 @@ const TransactionScreen = ({navigation}) => {
   ];
 
   return (
-    <SafeAreaView
-      style={[styles.container, {backgroundColor: theme.background}]}>
+    <SafeAreaView style={[styles.container, {backgroundColor: '#fff'}]}>
       <StatusBar backgroundColor={'#327113'} barStyle={'light-content'} />
 
       <View style={styles.mainContainer}>
@@ -81,6 +77,7 @@ const TransactionScreen = ({navigation}) => {
               <Text
                 style={{
                   color: selectedButton === buttonName ? 'white' : '#327113',
+                  fontSize: SIZES.width * 0.04,
                 }}>
                 {buttonName}
               </Text>
@@ -88,11 +85,11 @@ const TransactionScreen = ({navigation}) => {
           ))}
         </View>
         <ScrollView>
-          <View style={{marginBottom: 200}}>
+          <View style={{marginBottom: SIZES.width * 0.5}}>
             {data.map(item => (
               <TouchableOpacity
                 key={item.id}
-                style={{marginTop: 10, marginBottom: 10}}
+                style={{marginTop: SIZES.body6, marginBottom: SIZES.body6}}
                 onPress={() => navigation.navigate('DetailTransaction')}>
                 <Transaction />
               </TouchableOpacity>
@@ -111,14 +108,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   mainContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: SIZES.width * 0.05,
   },
   Header: {
-    marginTop: 10,
+    marginTop: SIZES.body6,
     alignItems: 'center',
   },
   textTitle: {
-    fontSize: 24,
+    fontSize: SIZES.h3,
     color: '#000',
     fontWeight: '500',
   },
@@ -126,15 +123,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
-    marginTop: 20,
-    height: 45,
+    marginTop: SIZES.width * 0.05,
+    height: SIZES.width * 0.11,
     paddingBottom: 15,
   },
   buttonContainer: {
-    height: 45,
+    height: SIZES.width * 0.11,
     borderRadius: 32,
     borderWidth: 1,
-    width: 100,
+    width: SIZES.width * 0.25,
     alignItems: 'center',
     justifyContent: 'center',
   },

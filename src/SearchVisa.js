@@ -63,7 +63,7 @@ const SearchVisa = ({navigation}) => {
         <View
           style={{
             position: 'absolute',
-            top: 10,
+            top: SIZES.body6,
             width: '100%',
             height: '100%',
           }}>
@@ -80,13 +80,17 @@ const SearchVisa = ({navigation}) => {
 
         <ScrollView>
           <View>
-            <View style={{marginHorizontal: 25}}>
+            <View style={{marginHorizontal: SIZES.width * 0.061}}>
               <BackArrowWhite placeholder={'Select Visa'} />
             </View>
             {data.map(item => (
               <TouchableOpacity
                 key={item.id}
-                style={{marginHorizontal: 25, marginTop: 10, marginBottom: 10}}
+                style={{
+                  marginHorizontal: SIZES.width * 0.061,
+                  marginTop: SIZES.body6,
+                  marginBottom: SIZES.body6,
+                }}
                 onPress={() => navigation.navigate('DetailScreen')}>
                 <VisaContainer data={[item]} />
               </TouchableOpacity>
