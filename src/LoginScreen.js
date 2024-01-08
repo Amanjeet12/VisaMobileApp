@@ -15,10 +15,12 @@ import TextInputBox from '../component/TextInputBox';
 import ButtonBox from '../component/ButtonBox';
 import {SIZES, image} from '../constant';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {useAuth} from '../constant/Auth';
 
 const LoginScreen = ({navigation}) => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
   const [inputValue, setInputValue] = useState('');
+  const {login} = useAuth();
 
   const handleInputChange = value => {
     setInputValue(value);
@@ -78,13 +80,11 @@ const LoginScreen = ({navigation}) => {
             placeholder={'Enter Your Password'}
           />
         </View>
-        <View style={{marginTop: SIZES.body6}}>
-          <ButtonBox
-            placeholder={'Sign In'}
-            icon={image.check}
-            specific={'BottomSheetScreen'}
-          />
-        </View>
+        <TouchableOpacity
+          style={{marginTop: SIZES.body6}}
+          onPress={() => login()}>
+          <ButtonBox placeholder={'Sign In'} icon={image.check} />
+        </TouchableOpacity>
         <View style={{marginVertical: SIZES.horizontal, alignItems: 'center'}}>
           <Text style={[[styles.fontDescription], {...theme.FONTS.body1}]}>
             Or Sign In With
@@ -108,7 +108,7 @@ const LoginScreen = ({navigation}) => {
             ]}>
             Don’t Have an Account?
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')}>
+          <TouchableOpacity onPress={() => navigation.navigate('SingUpScreen')}>
             <Text
               style={[
                 styles.fontDescription,

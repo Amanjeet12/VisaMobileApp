@@ -31,8 +31,6 @@ export const ThemeProvider = ({children}) => {
 
 export const useDarkTheme = () => {
   const context = useContext(ThemeContext);
-
-  // console.log('context:', context);
   if (!context) {
     throw new Error('useDarkTheme must be used within a ThemeProvider');
   }

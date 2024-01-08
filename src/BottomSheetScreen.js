@@ -23,7 +23,7 @@ import {
   SettingIconComponent,
   TransactionFocusedIconComponent,
   TransactionIconComponent,
-} from './SvgComponent.js/DashboardComponent';
+} from './SvgComponent/DashboardComponent';
 import {SIZES} from '../constant';
 import Dashboard from './Dashboard';
 
