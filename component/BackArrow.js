@@ -12,7 +12,7 @@ const BackArrow = ({placeholder}) => {
         onPress={() => navigation.goBack()}>
         <Image
           source={image.left}
-          style={{width: SIZES.h3, height: SIZES.h3, resizeMode: 'contain'}}
+          style={{width: 24, height: 24, resizeMode: 'contain'}}
         />
       </TouchableOpacity>
       <Text style={styles.fontTitle}>{placeholder}</Text>
@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
   backButton: {
     position: 'absolute',
     left: 0,
-    height: SIZES.width * 0.08,
-    width: SIZES.width * 0.08,
+    height: 20,
+    width: 20,
     justifyContent: 'center',
   },
   fontTitle: {
-    fontSize: SIZES.body2,
+    fontSize: 20,
     color: '#000',
     fontWeight: '500',
     fontFamily: 'Inter-Medium',

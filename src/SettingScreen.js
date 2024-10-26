@@ -9,199 +9,237 @@ import {
   View,
   Modal,
   Button,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDarkTheme} from '../constant/ThemeContext';
 import {SIZES, image} from '../constant';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Arrow from 'react-native-vector-icons/Entypo';
+import {useAuth} from '../constant/Auth';
+import {useDispatch} from 'react-redux';
+import {resetUserState} from './redux/AuthSlice';
 
 const SettingScreen = () => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
+  const {logout} = useAuth();
+  const dispatch = useDispatch();
+
+  const clearData = () => {
+    dispatch(resetUserState());
+  };
+
+  const handleLogout = () => {
+    Alert.alert(
+      'Logout', // Title
+      'Are you sure you want to logout?', // Message
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Logout canceled'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            clearData();
+          },
+        },
+      ],
+      {cancelable: true},
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor={'#327113'} barStyle={'light-content'} />
-      <View style={styles.profileContainer}>
-        <View style={{marginTop: SIZES.width * 0.04}}>
-          <Text style={{...theme.FONTS.h2, color: '#fff', fontWeight: '500'}}>
-            My Profile
-          </Text>
-        </View>
-        <View style={styles.flexBox}>
-          <View style={{width: '30%', height: '100%'}}>
-            <TouchableOpacity style={styles.imageContainer}>
-              <Image source={image.image} style={styles.image} />
+      <StatusBar barStyle={'dark-content'} backgroundColor={'#fff'} />
+      <ScrollView>
+        <View style={styles.profileContainer}>
+          <View style={{marginTop: SIZES.width * 0.04}}>
+            <Text style={{...theme.FONTS.h2, color: '#fff', fontWeight: '500'}}>
+              My Profile
+            </Text>
+          </View>
+          <View style={styles.flexBox}>
+            <View style={{width: '30%', height: '100%'}}>
+              <TouchableOpacity style={styles.imageContainer}>
+                <Image source={image.image} style={styles.image} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.textContainer}>
+              <Text style={{...theme.FONTS.h3, color: '#fff'}}>
+                Jos Creative
+              </Text>
+              <Text
+                style={{...theme.FONTS.body1, color: '#fff', marginTop: -5}}>
+                josphamdes@gmail.com
+              </Text>
+            </View>
+            <TouchableOpacity style={styles.iconContainer}>
+              <Icon name="edit" size={SIZES.width * 0.06} color={'#fff'} />
             </TouchableOpacity>
           </View>
-          <View style={styles.textContainer}>
-            <Text style={{...theme.FONTS.h3, color: '#fff'}}>Jos Creative</Text>
-            <Text style={{...theme.FONTS.body1, color: '#fff', marginTop: -5}}>
-              josphamdes@gmail.com
-            </Text>
-          </View>
-          <TouchableOpacity style={styles.iconContainer}>
-            <Icon name="edit" size={SIZES.width * 0.06} color={'#fff'} />
-          </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.whiteContainer}>
-        <View>
-          <TouchableOpacity style={styles.buttonContainer}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Image
-                source={image.password}
-                style={{
-                  width: SIZES.width * 0.061,
-                  height: SIZES.width * 0.061,
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  ...theme.FONTS.body1,
-                  color: '#000',
-                  paddingLeft: SIZES.body4,
-                }}>
-                Reset Password
-              </Text>
-            </View>
-            <View>
-              <Arrow
-                name="chevron-right"
-                size={SIZES.width * 0.06}
-                color={'#ccc'}
-              />
-            </View>
-          </TouchableOpacity>
-          <View style={styles.border} />
-          <TouchableOpacity style={styles.buttonContainer}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Image
-                source={image.profile}
-                style={{
-                  width: SIZES.width * 0.061,
-                  height: SIZES.width * 0.061,
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  ...theme.FONTS.body1,
-                  color: '#000',
-                  paddingLeft: SIZES.body4,
-                }}>
-                Contact Support
-              </Text>
-            </View>
-            <View>
-              <Arrow
-                name="chevron-right"
-                size={SIZES.width * 0.06}
-                color={'#ccc'}
-              />
-            </View>
-          </TouchableOpacity>
-          <View style={styles.border} />
-          <TouchableOpacity style={styles.buttonContainer}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Image
-                source={image.profile}
-                style={{
-                  width: SIZES.width * 0.061,
-                  height: SIZES.width * 0.061,
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  ...theme.FONTS.body1,
-                  color: '#000',
-                  paddingLeft: SIZES.body4,
-                }}>
-                Privacy Policy
-              </Text>
-            </View>
-            <View>
-              <Arrow
-                name="chevron-right"
-                size={SIZES.width * 0.06}
-                color={'#ccc'}
-              />
-            </View>
-          </TouchableOpacity>
-          <View style={styles.border} />
-          <TouchableOpacity style={styles.buttonContainer}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Image
-                source={image.profile}
-                style={{
-                  width: SIZES.width * 0.061,
-                  height: SIZES.width * 0.061,
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  ...theme.FONTS.body1,
-                  color: '#000',
-                  paddingLeft: SIZES.body4,
-                }}>
-                Terms & Conditions
-              </Text>
-            </View>
-            <View>
-              <Arrow
-                name="chevron-right"
-                size={SIZES.width * 0.06}
-                color={'#ccc'}
-              />
-            </View>
-          </TouchableOpacity>
-          <View style={styles.border} />
-          <TouchableOpacity style={styles.buttonContainer}>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Image
-                source={image.logout}
-                style={{
-                  width: SIZES.width * 0.061,
-                  height: SIZES.width * 0.061,
-                  resizeMode: 'contain',
-                }}
-              />
-              <Text
-                style={{
-                  ...theme.FONTS.body1,
-                  color: '#000',
-                  paddingLeft: SIZES.body4,
-                }}>
-                Logout
-              </Text>
-            </View>
-            <View>
-              <Arrow
-                name="chevron-right"
-                size={SIZES.width * 0.064}
-                color={'#ccc'}
-              />
-            </View>
-          </TouchableOpacity>
-          <View
-            style={{
-              position: 'absolute',
-              bottom: -SIZES.width * 0.18,
-              left: SIZES.width * 0.3,
-            }}>
-            <Text
+        <View style={styles.whiteContainer}>
+          <View>
+            <TouchableOpacity style={styles.buttonContainer}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Image
+                  source={image.password}
+                  style={{
+                    width: SIZES.width * 0.061,
+                    height: SIZES.width * 0.061,
+                    resizeMode: 'contain',
+                  }}
+                />
+                <Text
+                  style={{
+                    ...theme.FONTS.body1,
+                    color: '#000',
+                    paddingLeft: SIZES.body4,
+                  }}>
+                  Reset Password
+                </Text>
+              </View>
+              <View>
+                <Arrow
+                  name="chevron-right"
+                  size={SIZES.width * 0.06}
+                  color={'#ccc'}
+                />
+              </View>
+            </TouchableOpacity>
+            <View style={styles.border} />
+            <TouchableOpacity style={styles.buttonContainer}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Image
+                  source={image.profile}
+                  style={{
+                    width: SIZES.width * 0.061,
+                    height: SIZES.width * 0.061,
+                    resizeMode: 'contain',
+                  }}
+                />
+                <Text
+                  style={{
+                    ...theme.FONTS.body1,
+                    color: '#000',
+                    paddingLeft: SIZES.body4,
+                  }}>
+                  Contact Support
+                </Text>
+              </View>
+              <View>
+                <Arrow
+                  name="chevron-right"
+                  size={SIZES.width * 0.06}
+                  color={'#ccc'}
+                />
+              </View>
+            </TouchableOpacity>
+            <View style={styles.border} />
+            <TouchableOpacity style={styles.buttonContainer}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Image
+                  source={image.profile}
+                  style={{
+                    width: SIZES.width * 0.061,
+                    height: SIZES.width * 0.061,
+                    resizeMode: 'contain',
+                  }}
+                />
+                <Text
+                  style={{
+                    ...theme.FONTS.body1,
+                    color: '#000',
+                    paddingLeft: SIZES.body4,
+                  }}>
+                  Privacy Policy
+                </Text>
+              </View>
+              <View>
+                <Arrow
+                  name="chevron-right"
+                  size={SIZES.width * 0.06}
+                  color={'#ccc'}
+                />
+              </View>
+            </TouchableOpacity>
+            <View style={styles.border} />
+            <TouchableOpacity style={styles.buttonContainer}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Image
+                  source={image.profile}
+                  style={{
+                    width: SIZES.width * 0.061,
+                    height: SIZES.width * 0.061,
+                    resizeMode: 'contain',
+                  }}
+                />
+                <Text
+                  style={{
+                    ...theme.FONTS.body1,
+                    color: '#000',
+                    paddingLeft: SIZES.body4,
+                  }}>
+                  Terms & Conditions
+                </Text>
+              </View>
+              <View>
+                <Arrow
+                  name="chevron-right"
+                  size={SIZES.width * 0.06}
+                  color={'#ccc'}
+                />
+              </View>
+            </TouchableOpacity>
+            <View style={styles.border} />
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={() => handleLogout()}>
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Image
+                  source={image.logout}
+                  style={{
+                    width: SIZES.width * 0.061,
+                    height: SIZES.width * 0.061,
+                    resizeMode: 'contain',
+                  }}
+                />
+                <Text
+                  style={{
+                    ...theme.FONTS.body1,
+                    color: '#000',
+                    paddingLeft: SIZES.body4,
+                  }}>
+                  Logout
+                </Text>
+              </View>
+              <View>
+                <Arrow
+                  name="chevron-right"
+                  size={SIZES.width * 0.064}
+                  color={'#ccc'}
+                />
+              </View>
+            </TouchableOpacity>
+            <View
               style={{
-                color: 'rgba(0, 0, 0, 0.50)',
-                fontSize: SIZES.width * 0.043,
+                position: 'absolute',
+                bottom: -SIZES.width * 0.18,
+                left: SIZES.width * 0.3,
               }}>
-              Version 1.0
-            </Text>
+              <Text
+                style={{
+                  color: 'rgba(0, 0, 0, 0.50)',
+                  fontSize: SIZES.width * 0.043,
+                }}>
+                Version 1.0
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

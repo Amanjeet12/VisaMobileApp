@@ -7,8 +7,8 @@ export const HomeIconFocusedComponent = () => {
   return (
     <View style={{alignItems: 'center'}}>
       <Svg
-        width={SIZES.h3}
-        height={SIZES.width * 0.059}
+        width={25}
+        height={24}
         viewBox="0 0 25 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -26,8 +26,8 @@ export const TransactionIconComponent = () => {
   return (
     <View style={{alignItems: 'center'}}>
       <Svg
-        width={SIZES.h3}
-        height={SIZES.width * 0.059}
+        width={25}
+        height={24}
         viewBox="0 0 25 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -62,8 +62,8 @@ export const RewardIconComponent = () => {
   return (
     <View style={{alignItems: 'center'}}>
       <Svg
-        width={SIZES.h3}
-        height={SIZES.width * 0.059}
+        width={25}
+        height={24}
         viewBox="0 0 25 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -97,8 +97,8 @@ export const SettingIconComponent = () => {
   return (
     <View style={{alignItems: 'center'}}>
       <Svg
-        width={SIZES.h3}
-        height={SIZES.width * 0.059}
+        width={25}
+        height={24}
         viewBox="0 0 25 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -126,8 +126,8 @@ export const HomeIconComponent = () => {
   return (
     <View style={{alignItems: 'center'}}>
       <Svg
-        width={SIZES.h3}
-        height={SIZES.width * 0.059}
+        width={25}
+        height={24}
         viewBox="0 0 25 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -148,8 +148,8 @@ export const TransactionFocusedIconComponent = () => {
   return (
     <View style={{alignItems: 'center'}}>
       <Svg
-        width={SIZES.h3}
-        height={SIZES.width * 0.059}
+        width={25}
+        height={24}
         viewBox="0 0 25 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -190,8 +190,8 @@ export const RewardFocusedIconComponent = () => {
   return (
     <View style={{alignItems: 'center'}}>
       <Svg
-        width={SIZES.h3}
-        height={SIZES.width * 0.059}
+        width={25}
+        height={24}
         viewBox="0 0 25 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -226,8 +226,8 @@ export const SettingFocusedIconComponent = () => {
   return (
     <View style={{alignItems: 'center'}}>
       <Svg
-        width={SIZES.h3}
-        height={SIZES.width * 0.059}
+        width={25}
+        height={24}
         viewBox="0 0 25 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">
@@ -258,7 +258,9 @@ export const SettingFocusedIconComponent = () => {
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: SIZES.body5,
+    fontSize: 12,
     color: '#1D493E',
+    width: 85,
+    textAlign: 'center',
   },
 });

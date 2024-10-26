@@ -24,17 +24,17 @@ const CommonTextInput = ({title, placeholder}) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: SIZES.h5,
+    marginTop: 20,
     borderRadius: 8,
-    borderColor: 'rgba(13, 22, 52, 0.05)',
+    borderColor: 'grey',
   },
   title: {
-    fontSize: SIZES.h7,
+    fontSize:12,
     paddingLeft: 3,
   },
   input: {
-    height: SIZES.extralarge,
-    fontSize: SIZES.h6,
+    height: 55,
+    fontSize: 18,
     backgroundColor: '#fff',
   },
 });

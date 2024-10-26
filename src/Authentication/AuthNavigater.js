@@ -7,6 +7,7 @@ import UploadPassportBackScreen from '../UploadPassportBackScreen';
 import TravellerPhotoScreen from '../TravellerPhotoScreen';
 import SingUpScreen from '../SignUpScreen';
 import PancardScreen from '../PancardScreen';
+import SignUpCompleteScreen from '../SignUpCompleteScreen';
 
 const stack = createStackNavigator();
 
@@ -29,6 +30,7 @@ const AuthNavigater = () => {
         component={TravellerPhotoScreen}
       />
       <stack.Screen name="PancardScreen" component={PancardScreen} />
+      <stack.Screen name="SignUpCompleteScreen" component={SignUpCompleteScreen} />
     </stack.Navigator>
   );
 };

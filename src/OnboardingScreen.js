@@ -79,7 +79,7 @@ const OnboardingScreen = ({navigation}) => {
             style={{
               height: '100%',
               width: '100%',
-              resizeMode: 'stretch',
+              resizeMode: 'contain',
               borderRadius: 21,
             }}
           />
@@ -112,7 +112,7 @@ const OnboardingScreen = ({navigation}) => {
                 styles.indicator,
                 currentSlideIndex == index && {
                   backgroundColor: '#327113',
-                  width: 60,
+                  width: 40,
                 },
               ]}
             />
@@ -124,7 +124,14 @@ const OnboardingScreen = ({navigation}) => {
               key={index}
               style={{height: '100%', justifyContent: 'center'}}>
               {currentSlideIndex === index && (
-                <Text style={{...theme.FONTS.h1, color: '#000'}}>
+                <Text
+                  style={{
+                    fontSize: 28,
+                    color: '#000',
+                    fontWeight: '600',
+                    fontFamily: 'Inter-Bold',
+                    lineHeight: 34
+                  }}>
                   {item.title}
                 </Text>
               )}
@@ -145,14 +152,15 @@ const OnboardingScreen = ({navigation}) => {
         }}>
         <View style={{marginBottom: 30, marginTop: 10}}>
           {currentSlideIndex == slides.length - 1 ? (
-            <View style={{height: SIZES.extralarge}}>
+            <View style={{height: 55}}>
               <TouchableOpacity
                 style={[styles.btn, {backgroundColor: theme.primary}]}
                 onPress={() => navigation.navigate('LoginScreen')}>
                 <Text
                   style={{
-                    ...theme.FONTS.h5,
+                    fontSize: 16,
                     color: theme.background,
+                    fontFamily: 'Inter-Bold',
                   }}>
                   GET STARTED
                 </Text>
@@ -173,8 +181,9 @@ const OnboardingScreen = ({navigation}) => {
                 onPress={skip}>
                 <Text
                   style={{
-                    ...theme.FONTS.h5,
+                    fontSize: 16,
                     color: theme.secondary,
+                    fontFamily: 'Inter-Bold',
                   }}>
                   SKIP
                 </Text>
@@ -186,8 +195,9 @@ const OnboardingScreen = ({navigation}) => {
                 style={[styles.btn, {backgroundColor: theme.primary}]}>
                 <Text
                   style={{
-                    ...theme.FONTS.h5,
+                    fontSize: 16,
                     color: theme.background,
+                    fontFamily: 'Inter-Bold',
                   }}>
                   NEXT
                 </Text>
@@ -239,7 +249,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     flex: 1,
-    height: SIZES.extralarge,
+    height: 55,
     borderRadius: 5,
     justifyContent: 'center',
     alignItems: 'center',

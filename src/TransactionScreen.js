@@ -54,7 +54,7 @@ const TransactionScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={[styles.container, {backgroundColor: '#fff'}]}>
-      <StatusBar backgroundColor={'#327113'} barStyle={'light-content'} />
+      <StatusBar barStyle={'dark-content'} backgroundColor={'#fff'} />
 
       <View style={styles.mainContainer}>
         <View style={styles.Header}>

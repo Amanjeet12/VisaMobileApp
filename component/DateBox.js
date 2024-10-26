@@ -1,16 +1,20 @@
 import {StyleSheet, Text, View, TouchableOpacity, Platform} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const DateBox = ({placeholder}) => {
+const DateBox = ({placeholder, onDateSelect, defaultDate = new Date()}) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(defaultDate); // Initialize with defaultDate
+
+  useEffect(() => {
+    setSelectedDate(defaultDate);  // Set default date when the component is initialized
+  }, [defaultDate]);
 
   const handleDateChange = (event, selected) => {
     setShowDatePicker(Platform.OS === 'ios'); // On iOS, the DateTimePicker is a modal
     if (selected) {
       setSelectedDate(selected);
-      // Handle the selected date as needed
+      onDateSelect && onDateSelect(selected); // Trigger the callback function
     }
   };
 
@@ -23,7 +27,7 @@ const DateBox = ({placeholder}) => {
       <TouchableOpacity onPress={openDatePicker}>
         <View style={styles.dateContainer}>
           <Text style={styles.dateText}>
-            {selectedDate.toLocaleDateString()}
+            {selectedDate ? selectedDate.toLocaleDateString() : placeholder}
           </Text>
         </View>
       </TouchableOpacity>
@@ -36,9 +40,6 @@ const DateBox = ({placeholder}) => {
           onChange={handleDateChange}
         />
       )}
-      <View style={styles.titleBox}>
-        <Text style={styles.title}>{placeholder}</Text>
-      </View>
     </View>
   );
 };
@@ -51,8 +52,8 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     paddingLeft: 15,
     borderWidth: 1,
-    borderColor: 'rgba(13, 22, 52, 0.05)',
     justifyContent: 'center',
+    borderColor: '#686d80',
   },
   dateContainer: {
     height: 50,
@@ -61,16 +62,5 @@ const styles = StyleSheet.create({
   dateText: {
     fontSize: 14,
     color: '#000',
-  },
-  title: {
-    fontSize: 12,
-    color: '#888',
-  },
-  titleBox: {
-    position: 'absolute',
-    top: -10,
-    left: 15,
-    backgroundColor: '#fff',
-    paddingHorizontal: 5,
   },
 });

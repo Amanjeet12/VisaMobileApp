@@ -40,7 +40,6 @@ const TravellerPhotoSaveScreen = ({navigation}) => {
           <ButtonBox placeholder={'Next'} specific={'DetailScreen'} />
         </View>
       </ScrollView>
-      {console.log(SIZES.width * 0.0853)}
     </SafeAreaView>
   );
 };

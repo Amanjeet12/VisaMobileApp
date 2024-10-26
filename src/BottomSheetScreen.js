@@ -26,6 +26,7 @@ import {
 } from './SvgComponent/DashboardComponent';
 import {SIZES} from '../constant';
 import Dashboard from './Dashboard';
+import HomeScreen from './HomeScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,7 +47,7 @@ const BottomSheetScreen = () => {
             bottom: 0,
             left: 0,
             right: 0,
-            height: SIZES.width * 0.183,
+            height: 75,
             borderRadius: 0,
             borderTopWidth: 0.75,
             borderTopColor: '#ABABAB',
@@ -62,8 +63,8 @@ const BottomSheetScreen = () => {
           },
         }}>
         <Tab.Screen
-          name="Dashboard"
-          component={Dashboard}
+          name="HomeScreen"
+          component={HomeScreen}
           options={{
             tabBarShowLabel: false,
             tabBarIcon: ({color, size, focused}) =>

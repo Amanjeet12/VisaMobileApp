@@ -35,23 +35,24 @@ const ButtonBox = ({
 
 const styles = StyleSheet.create({
   button: {
-    padding: SIZES.body6,
+    padding: 5,
     borderRadius: 8,
     alignItems: 'center',
-    height: SIZES.width * 0.134,
+    height: 55,
     justifyContent: 'center',
     flexDirection: 'row',
+    paddingHorizontal: 15,
   },
   buttonText: {
     color: 'white',
-    fontSize: SIZES.width * 0.04,
+    fontSize: 16,
     fontWeight: '500',
   },
   image: {
-    width: SIZES.horizontal,
-    height: SIZES.horizontal,
+    width: 25,
+    height: 25,
     resizeMode: 'contain',
-    marginLeft: SIZES.width * 0.015,
+    marginLeft: 8,
   },
 });
 

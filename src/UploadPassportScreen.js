@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import {
   Image,
   SafeAreaView,
@@ -6,37 +5,85 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
+  ToastAndroid,
   TouchableOpacity,
   View,
 } from 'react-native';
 import React, {useState} from 'react';
-import {useDarkTheme} from '../constant/ThemeContext';
 import BackArrow from '../component/BackArrow';
 import ImageBox from '../component/ImageBox';
-import CommonTextInput from '../component/CommonTextInput';
 import {RadioButton} from 'react-native-paper';
 import DateBox from '../component/DateBox';
-import DropDown from '../component/DropDown';
 import {SIZES, image} from '../constant';
+import CountryPickerDropdown from '../component/CountryPickerDropdown';
 
-const UploadPassportScreen = ({navigation}) => {
-  const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
-  const [inputValue, setInputValue] = useState('');
-  const [checked, setChecked] = useState('first');
+const UploadPassportScreen = ({navigation, route}) => {
+  const {data} = route.params;
+  const [inputValue, setInputValue] = useState({
+    passportNo: '',
+    firstName: '',
+    lastName: '',
+    birthPlace: '',
+    dob: '',
+    countryName: '',
+    dateOfIssue: '',
+    dateOfExpiry: '',
+    gender: 'male', // default to 'male'
+    email: data,
+    phone: '',
+    passport_front: '', // This will store the uploaded URL
+  });
 
-  const handleInputChange = value => {
-    setInputValue(value);
+  // Callback function to handle image upload and set passport_front URL
+  const handleImageUpload = (url) => {
+    setInputValue(prevState => ({
+      ...prevState,
+      passport_front: url, // Set the uploaded URL for passport_front
+    }));
   };
 
-  const optionsData = [
-    {id: 1, title: 'India', image: image.google},
-    {id: 2, title: 'Australia', image: image.apple},
-  ];
-  const optionsData2 = [
-    {id: 1, title: 'Male'},
-    {id: 2, title: 'Female'},
-  ];
-  console.log(SIZES.width * 0.135);
+  const handleInputChange = (field, value) => {
+    setInputValue(prevState => ({
+      ...prevState,
+      [field]: value,
+    }));
+  };
+
+  const showToast = msg => {
+    ToastAndroid.showWithGravity(msg, ToastAndroid.SHORT, ToastAndroid.BOTTOM);
+  };
+
+  const handleNext = () => {
+    const {
+      passportNo,
+      firstName,
+      lastName,
+      birthPlace,
+      dob,
+      countryName,
+      dateOfIssue,
+      dateOfExpiry,
+      gender,
+      passport_front, // Add passport_front validation
+    } = inputValue;
+
+    // Check if any field is empty and show a toast message
+    if (!passportNo) return showToast('Passport number is required.');
+    if (!firstName) return showToast('First name is required.');
+    if (!lastName) return showToast('Last name is required.');
+    if (!birthPlace) return showToast('Birth place is required.');
+    if (!dob) return showToast('Date of birth is required.');
+    if (!countryName) return showToast('Country name is required.');
+    if (!dateOfIssue) return showToast('Date of issue is required.');
+    if (!dateOfExpiry) return showToast('Date of expiry is required.');
+    if (!passport_front) return showToast('Passport front image is required.'); // Ensure passport front is uploaded
+
+    console.log(inputValue);
+
+    navigation.navigate('UploadPassportBackScreen', {passportData: inputValue});
+  };
+
   return (
     <SafeAreaView style={[styles.container]}>
       <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
@@ -51,10 +98,12 @@ const UploadPassportScreen = ({navigation}) => {
             placeholder={
               'Upload your passport front pic and\nwe’ll fetch all necessary data.'
             }
+            onImageUpload={handleImageUpload} // Pass the callback to ImageBox
           />
         </View>
         <View style={{marginTop: SIZES.padding}}>
-          <Text style={{...theme.FONTS.h4, color: '#000'}}>
+          <Text
+            style={{fontSize: 20, fontFamily: 'Inter-Medium', color: '#000'}}>
             Passport Front Details
           </Text>
         </View>
@@ -66,15 +115,14 @@ const UploadPassportScreen = ({navigation}) => {
           }}>
           <TouchableOpacity
             style={{flexDirection: 'row', alignItems: 'center'}}
-            onPress={() => setChecked('first')}
+            onPress={() => handleInputChange('gender', 'male')}
             activeOpacity={0.7}>
             <RadioButton
-              value="first"
-              status={checked === 'first' ? 'checked' : 'unchecked'}
-              onPress={() => setChecked('first')}
+              value="male"
+              status={inputValue.gender === 'male' ? 'checked' : 'unchecked'}
               color="#327113"
             />
-            <Text style={{...theme.FONTS.body1, color: '#000'}}>Male</Text>
+            <Text style={{fontSize: 16, color: '#000'}}>Male</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -82,82 +130,115 @@ const UploadPassportScreen = ({navigation}) => {
               alignItems: 'center',
               marginLeft: SIZES.body6,
             }}
-            onPress={() => setChecked('second')}
+            onPress={() => handleInputChange('gender', 'female')}
             activeOpacity={0.7}>
             <RadioButton
-              value="second"
-              status={checked === 'second' ? 'checked' : 'unchecked'}
-              onPress={() => setChecked('second')}
+              value="female"
+              status={inputValue.gender === 'female' ? 'checked' : 'unchecked'}
               color="#327113"
             />
-            <Text style={{...theme.FONTS.body1, color: '#000'}}>Female</Text>
+            <Text style={{fontSize: 16, color: '#000'}}>Female</Text>
           </TouchableOpacity>
         </View>
-        <View>
-          <CommonTextInput
-            title={'Passport No.'}
-            placeholder={'Enter passport no'}
+        <View style={{marginTop: 25}}>
+          <Text style={styles.header}>Passport No</Text>
+          <TextInput
+            placeholder="Enter passport no"
+            value={inputValue.passportNo}
+            onChangeText={text => handleInputChange('passportNo', text)}
+            style={styles.input}
+            placeholderTextColor={'grey'}
           />
         </View>
-        <View>
-          <CommonTextInput
-            title={'First Name'}
-            placeholder={'Enter First Name'}
+        <View style={{marginTop: 15}}>
+          <Text style={styles.header}>First Name</Text>
+          <TextInput
+            placeholder="Enter first name"
+            value={inputValue.firstName}
+            onChangeText={text => handleInputChange('firstName', text)}
+            style={styles.input}
+            placeholderTextColor={'grey'}
           />
         </View>
-        <View style={{paddingBottom: SIZES.width * 0.061}}>
-          <CommonTextInput
-            title={'Last Name'}
-            placeholder={'Enter Last Name'}
+        <View style={{marginTop: 15}}>
+          <Text style={styles.header}>Last Name</Text>
+          <TextInput
+            placeholder="Enter last name"
+            value={inputValue.lastName}
+            onChangeText={text => handleInputChange('lastName', text)}
+            style={styles.input}
+            placeholderTextColor={'grey'}
           />
         </View>
-        <View>
-          <DropDown
-            image={image.google}
-            title={'Select Country'}
-            options={optionsData}
+        <View style={{marginTop: 15}}>
+          <Text style={styles.header}>Phone Number</Text>
+          <TextInput
+            placeholder="Enter Phone number"
+            value={inputValue.phone}
+            onChangeText={text => handleInputChange('phone', text)}
+            style={styles.input}
+            keyboardType="number-pad"
+            maxLength={10}
+            placeholderTextColor={'grey'}
           />
         </View>
-        <View style={{marginTop: SIZES.width * 0.05}}>
-          <DateBox placeholder={'DOB'} />
-        </View>
-        <View>
-          <View style={{marginTop: SIZES.width * 0.05}}>
-            <DropDown
-              image={image.apple}
-              title={'Select Gender'}
-              options={optionsData2}
-            />
-          </View>
-          <CommonTextInput
-            title={'Place Birth'}
-            placeholder={'Enter Place Birth'}
+        <View style={{marginTop: 15}}>
+          <Text style={styles.header}>Country Name</Text>
+          <CountryPickerDropdown
+            onSelectCountry={country =>
+              handleInputChange('countryName', country?.label || '')
+            }
           />
         </View>
-        <View style={{marginTop: SIZES.width * 0.061}}>
-          <DateBox placeholder={'Date Of Issue'} />
+
+        <View style={{marginTop: 15}}>
+          <Text style={styles.header}>DOB</Text>
+          <DateBox
+            placeholder="Select a date"
+            defaultDate={new Date('1990-01-01')} // Set a default date if needed
+            onDateSelect={date => handleInputChange('dob', date.toISOString())} // Ensure date is in ISO format
+          />
         </View>
-        <View style={{marginTop: SIZES.width * 0.061}}>
-          <DateBox placeholder={'Date Of Expiry'} />
+
+        <View style={{marginTop: 15}}>
+          <Text style={styles.header}>Birth Place</Text>
+          <TextInput
+            placeholder="Enter Birth Place"
+            value={inputValue.birthPlace}
+            onChangeText={text => handleInputChange('birthPlace', text)}
+            style={styles.input}
+            placeholderTextColor={'grey'}
+          />
+        </View>
+        <View style={{marginTop: 15}}>
+          <Text style={styles.header}>Date Of Issue</Text>
+          <DateBox
+            placeholder="Date of Issue"
+            defaultDate={new Date('2022-01-01')} // Set a default date if needed
+            onDateSelect={date =>
+              handleInputChange('dateOfIssue', date.toISOString())
+            } // Ensure date is in ISO format
+          />
+        </View>
+        <View style={{marginTop: 15}}>
+          <Text style={styles.header}>Date Of Expiry</Text>
+          <DateBox
+            placeholder="Date of Expiry"
+            defaultDate={new Date('2032-01-01')} // Set a default date if needed
+            onDateSelect={date =>
+              handleInputChange('dateOfExpiry', date.toISOString())
+            } // Ensure date is in ISO format
+          />
         </View>
         <View
           style={{
-            marginTop: SIZES.width * 0.05,
-            marginBottom: SIZES.width * 0.075,
+            marginTop: 30,
+            marginBottom: 15,
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <TouchableOpacity style={styles.buttonBox}>
-            <Text style={{fontSize: SIZES.width * 0.04, color: '#000'}}>
-              Skip
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.buttonBox2}
-            onPress={() => navigation.navigate('UploadPassportBackScreen')}>
-            <Text style={{fontSize: SIZES.width * 0.04, color: '#fff'}}>
-              Next
-            </Text>
+          <TouchableOpacity style={styles.buttonBox2} onPress={handleNext}>
+            <Text style={{fontSize: 18, color: '#fff'}}>Next</Text>
             <Image source={image.arrow} style={styles.Icon} />
           </TouchableOpacity>
         </View>
@@ -171,35 +252,39 @@ export default UploadPassportScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: SIZES.width * 0.05,
+    paddingHorizontal: 20,
     backgroundColor: '#fff',
   },
   ScrollView: {
     flexGrow: 1,
     paddingBottom: SIZES.extralarge,
   },
-  buttonBox: {
-    height: SIZES.width * 0.135,
-    backgroundColor: '#fff',
-    width: '48%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 8,
-    borderWidth: 1,
+  header: {
+    fontSize: 14,
+    color: '#000',
+    fontWeight: '600',
+    paddingBottom: 5,
   },
   buttonBox2: {
     height: SIZES.width * 0.135,
     backgroundColor: '#327113',
-    width: '48%',
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 8,
     flexDirection: 'row',
   },
   Icon: {
-    width: SIZES.width * 0.05,
-    height: SIZES.width * 0.05,
+    width: 20,
+    height: 20,
     resizeMode: 'cover',
     marginLeft: 5,
+  },
+  input: {
+    height: 55,
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingLeft: 10,
+    borderColor: '#686d80',
   },
 });

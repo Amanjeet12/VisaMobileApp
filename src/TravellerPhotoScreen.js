@@ -10,6 +10,7 @@ import {
   View,
   Modal,
   Button,
+  ToastAndroid,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDarkTheme} from '../constant/ThemeContext';
@@ -17,19 +18,49 @@ import BackArrow from '../component/BackArrow';
 import ImageBox from '../component/ImageBox';
 import LottieView from 'lottie-react-native';
 import {SIZES, image} from '../constant';
+import {useAuth} from '../constant/Auth';
+import LoginScreen from './LoginScreen';
+import {useDispatch, useSelector} from 'react-redux';
+import {AddNewUserAddress} from './redux/NewUserSlice';
 
-const TravellerPhotoScreen = ({navigation}) => {
-  const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
+const TravellerPhotoScreen = ({navigation, route}) => {
+  const {passportData} = route.params; // Get passportData from route params
   const [isModalVisible, setModalVisible] = useState(false);
+  const [profilePhotoUrl, setProfilePhotoUrl] = useState(''); // State to store user profile photo URL
+  const dispatch = useDispatch();
+
+  // Optional validation toast message
+  const showToast = message => {
+    ToastAndroid.showWithGravity(
+      message,
+      ToastAndroid.SHORT,
+      ToastAndroid.BOTTOM,
+    );
+  };
 
   // Function to toggle modal visibility
   const toggleModal = () => {
+    if (!profilePhotoUrl) {
+      return showToast('Pancard number is required.');
+    }
+
+    const updatedPassportData = {
+      ...passportData,
+      profilePhotoUrl: profilePhotoUrl,
+    };
+
+    dispatch(AddNewUserAddress(updatedPassportData));
+
     setModalVisible(!isModalVisible);
   };
 
   const navigateToNextPage = () => {
     setModalVisible(!isModalVisible);
-    navigation.navigate('BottomSheetScreen');
+    navigation.navigate('DetailScreen');
+  };
+
+  const handleImageUpload = url => {
+    setProfilePhotoUrl(url); // Save the uploaded image URL
   };
 
   useEffect(() => {
@@ -53,6 +84,7 @@ const TravellerPhotoScreen = ({navigation}) => {
             placeholder={
               'Upload your passport front pic and\nwe’ll fetch all necessary data.'
             }
+            onImageUpload={handleImageUpload} // Handle the Pancard image upload
           />
         </View>
         <TouchableOpacity
@@ -78,17 +110,18 @@ const TravellerPhotoScreen = ({navigation}) => {
               </View>
               <Text
                 style={{
-                  ...theme.FONTS.h2,
+                  fontSize: 24,
                   color: '#27214D',
-                  marginTop: SIZES.width * 0.05,
+                  marginTop: 20,
                 }}>
                 Congratulations !!!
               </Text>
               <Text
                 style={{
-                  ...theme.FONTS.body1,
+                  fontSize: 18,
                   color: '#000',
                   textAlign: 'center',
+                  marginTop: 15,
                 }}>
                 Your account has been successfully created
               </Text>
@@ -96,7 +129,6 @@ const TravellerPhotoScreen = ({navigation}) => {
           </View>
         </Modal>
       </ScrollView>
-      {console.log('cc', SIZES.width * 0.135)}
     </SafeAreaView>
   );
 };

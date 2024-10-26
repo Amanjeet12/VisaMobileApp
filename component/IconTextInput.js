@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/Entypo'; // Import your desired icon library
 import {SIZES, image} from '../constant';
 
-const IconTextInput = ({placeholder, iconName}) => {
+const IconTextInput = ({placeholder, iconName, editable}) => {
   const [isFocused, setIsFocused] = useState(false);
   console.log(iconName);
 
@@ -23,6 +23,7 @@ const IconTextInput = ({placeholder, iconName}) => {
           placeholderTextColor="#000"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          editable={editable}
         />
       </View>
     </View>

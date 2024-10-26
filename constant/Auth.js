@@ -9,6 +9,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({children}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true); // New loading state
 
   useEffect(() => {
     // Retrieve the state from storage when the component mounts
@@ -23,6 +24,8 @@ export const AuthProvider = ({children}) => {
           "Failed to retrieve 'isLoggedIn' from AsyncStorage:",
           error,
         );
+      } finally {
+        setLoading(false); // Update loading state when finished
       }
     };
 
@@ -30,6 +33,7 @@ export const AuthProvider = ({children}) => {
   }, []);
 
   const login = async () => {
+    console.log('first');
     try {
       await AsyncStorage.setItem('isLoggedIn', 'true');
       setIsLoggedIn(true);
@@ -48,7 +52,7 @@ export const AuthProvider = ({children}) => {
   };
 
   return (
-    <AuthContext.Provider value={{isLoggedIn, login, logout}}>
+    <AuthContext.Provider value={{isLoggedIn, login, logout, loading}}>
       {children}
     </AuthContext.Provider>
   );

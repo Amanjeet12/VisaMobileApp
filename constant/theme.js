@@ -92,11 +92,11 @@ export const SIZES = {
   // font sizes
   extralarge: width * 0.123,
   largeTitle: width * 0.0973,
-  h1: width * 0.074,
+  h1: 20,
   h2: width * 0.069,
   h3: width * 0.06,
   h4: width * 0.054,
-  h5: width * 0.04,
+  h5: 20,
   h6: width * 0.0341,
   h7: width * 0.03,
   body1: width * 0.074,

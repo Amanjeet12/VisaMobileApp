@@ -11,7 +11,7 @@ const BackButton = () => {
       onPress={() => navigation.goBack()}>
       <Image
         source={image.back}
-        style={{width: SIZES.h1, height: SIZES.h1, resizeMode: 'contain'}}
+        style={{width: 35, height:35, resizeMode: 'contain'}}
       />
     </TouchableOpacity>
   );
@@ -21,8 +21,8 @@ export default BackButton;
 
 const styles = StyleSheet.create({
   backButton: {
-    width: SIZES.h1,
-    height: SIZES.h1,
+    width: 35,
+    height: 35,
     justifyContent: 'center',
     alignItems: 'center',
   },

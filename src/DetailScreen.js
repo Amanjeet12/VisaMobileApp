@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDarkTheme} from '../constant/ThemeContext';
 import {SIZES, image} from '../constant';
 import BackArrow from '../component/BackArrow';
@@ -19,37 +19,50 @@ import UserDetails from '../component/UserDetails';
 import Icon from 'react-native-vector-icons/AntDesign';
 import CheckIcon from 'react-native-vector-icons/Entypo';
 import Pluscircle from 'react-native-vector-icons/AntDesign';
+import {useDispatch, useSelector} from 'react-redux';
+import {fetchProfile} from './redux/ProfileSlice';
+import UserDetailEdit from '../component/UserDetailEdit';
 
-const DetailScreen = ({navigation}) => {
+const DetailScreen = ({navigation, route}) => {
   const {theme, toggleTheme, isDarkTheme} = useDarkTheme();
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [isClicked, setIsClicked] = useState(false);
+  const [selectedUser, setSelectedUser] = useState([]);
+  const [savedUser, setSavedUser] = useState([]);
+  const {isloading, isSuccess, isError, userSelectedData} = useSelector(
+    state => state.fetchVisa,
+  );
+  const {data} = useSelector(state => state.loginVerify);
+  const dispatch = useDispatch();
+  const passportDataList = useSelector(state => state.address.passportData);
+  
+  useEffect(() => {
+    fetchSavedAddress();
+  }, []);
 
-  const handlePress = () => {
-    setIsClicked(!isClicked);
+  const fetchSavedAddress = async () => {
+    var params = {
+      user_email_id: data?.user_data?.user_email_id,
+    };
+    const resultAction = await dispatch(fetchProfile(params));
+    setSavedUser([resultAction.payload.data]);
   };
-
-  const data = [
-    {
-      id: 1,
-      name: 'Vikrant singh',
-    },
-    {
-      id: 2,
-      name: 'Amanjeet Singh',
-    },
-  ];
 
   const handleUserSelect = userId => {
-    setSelectedUser(userId);
+    console.log("====>", userId)
+    if (selectedUser.includes(userId)) {
+      setSelectedUser(selectedUser.filter(id => id !== userId));
+    } else {
+      setSelectedUser([...selectedUser, userId]);
+    }
   };
+
+  const totalPrice = selectedUser.length * userSelectedData?.visa_price_b2c;
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
       <View style={styles.mainContainer}>
         <BackArrow placeholder={''} />
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View>
             <Text style={{...theme.FONTS.h4, color: '#000'}}>
               Complete Details
@@ -60,12 +73,22 @@ const DetailScreen = ({navigation}) => {
               </Text>
             </View>
             <View>
-              {data.map(item => (
+              {savedUser.map(item => (
                 <View
-                  key={item.id}
+                  key={item._id}
                   style={{marginBottom: SIZES.body6}}
                   onPress={() => console.log('index')}>
                   <UserDetails data={item} onSelect={handleUserSelect} />
+                </View>
+              ))}
+            </View>
+            <View>
+              {passportDataList.map((item, index) => (
+                <View
+                  key={index}
+                  style={{marginBottom: SIZES.body6}}
+                  onPress={() => console.log('index')}>
+                  <UserDetailEdit data={item} onSelect={handleUserSelect} />
                 </View>
               ))}
             </View>
@@ -94,106 +117,6 @@ const DetailScreen = ({navigation}) => {
                 <Icon name="plus" size={SIZES.width * 0.061} color={'#000'} />
               </TouchableOpacity>
             </View>
-            <View
-              style={{
-                marginBottom: SIZES.width * 0.366,
-                marginTop: SIZES.body6,
-              }}>
-              <Text style={{...theme.FONTS.body1, color: '#000'}}>
-                Extra Protection
-              </Text>
-              <View style={styles.protection}>
-                <View style={styles.flex}>
-                  <View style={styles.flex}>
-                    <Image
-                      source={image.verified}
-                      style={{
-                        width: SIZES.h1,
-                        height: SIZES.h1,
-                        resizeMode: 'contain',
-                        marginRight: SIZES.width * 0.013,
-                      }}
-                    />
-                    <Text style={{color: '#000', fontSize: SIZES.body4}}>
-                      Travel Insurance
-                    </Text>
-                  </View>
-                  <View>
-                    <Text style={{...theme.FONTS.h3, color: '#000'}}>$100</Text>
-                  </View>
-                </View>
-                <View
-                  style={[
-                    styles.flex,
-                    {
-                      justifyContent: 'flex-start',
-                      marginTop: SIZES.width * 0.05,
-                    },
-                  ]}>
-                  <CheckIcon
-                    name="check"
-                    size={SIZES.width * 0.037}
-                    color={'blue'}
-                  />
-                  <Text
-                    style={{
-                      marginLeft: SIZES.body6,
-                      color: 'rgba(37, 40, 49, 0.50))',
-                      fontSize: SIZES.width * 0.03,
-                    }}>
-                    Coverage for Accidents up to ₹10000
-                  </Text>
-                </View>
-                <View
-                  style={[
-                    styles.flex,
-                    {
-                      justifyContent: 'flex-start',
-                      marginTop: SIZES.width * 0.013,
-                    },
-                  ]}>
-                  <CheckIcon
-                    name="check"
-                    size={SIZES.width * 0.037}
-                    color={'blue'}
-                  />
-                  <Text
-                    style={{
-                      marginLeft: SIZES.body6,
-                      color: 'rgba(37, 40, 49, 0.50))',
-                      fontSize: SIZES.width * 0.03,
-                    }}>
-                    Coverage for Accidents up to ₹10000
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  style={[
-                    styles.ButtonBox,
-                    {
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: isClicked ? '#327113' : '#F2F3F6',
-                    },
-                  ]}
-                  onPress={handlePress}>
-                  <Pluscircle
-                    name="pluscircle"
-                    size={SIZES.width * 0.058}
-                    color={isClicked ? '#fff' : '#327113'}
-                  />
-                  <Text
-                    style={{
-                      marginLeft: SIZES.body6,
-                      color: isClicked ? '#fff' : '#327113',
-                      fontFamily: 'Inter-Medium',
-                      fontSize: SIZES.width * 0.04,
-                    }}>
-                    {isClicked ? 'Insurance Added' : 'Add Insurance'}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
           </View>
         </ScrollView>
       </View>
@@ -203,7 +126,9 @@ const DetailScreen = ({navigation}) => {
             <Text style={{fontSize: SIZES.body5, color: '#808080'}}>
               Subtotal
             </Text>
-            <Text style={{...theme.FONTS.h3, color: '#000'}}>$100</Text>
+            <Text style={{...theme.FONTS.h3, color: '#000'}}>
+              ₹ {totalPrice}
+            </Text>
           </View>
           <View>
             <ButtonBox
@@ -256,8 +181,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: SIZES.width * 0.134,
     borderRadius: 8,
-    borderWidth: 0.5,
-    borderColor: 'rgba(13, 22, 52, 0.05)',
+    borderWidth: 1,
+    borderColor: '#dadada',
     justifyContent: 'center',
     padding: SIZES.body6,
   },
@@ -266,7 +191,7 @@ const styles = StyleSheet.create({
     height: SIZES.width * 0.535,
     borderRadius: 8,
     borderWidth: 0.5,
-    borderColor: 'rgba(13, 22, 52, 0.05)',
+    borderColor: '#dadada',
     padding: SIZES.width * 0.05,
   },
   flex: {

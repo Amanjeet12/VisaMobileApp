@@ -42,10 +42,10 @@ const TextInput = ({onChangeText, placeholder}) => {
 
 const styles = StyleSheet.create({
   input: {
-    height: SIZES.extralarge,
+    height: 55,
     borderBottomWidth: 1,
-    marginBottom: SIZES.body3,
-    fontSize: SIZES.body4,
+    marginBottom: 20,
+    fontSize: 15,
   },
 });
 
