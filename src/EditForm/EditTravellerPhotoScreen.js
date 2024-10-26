@@ -13,20 +13,17 @@ import {
   ToastAndroid,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {useDarkTheme} from '../constant/ThemeContext';
-import BackArrow from '../component/BackArrow';
-import ImageBox from '../component/ImageBox';
+import BackArrow from '../../component/BackArrow';
+import ImageBox from '../../component/ImageBox';
 import LottieView from 'lottie-react-native';
-import {SIZES, image} from '../constant';
-import {useAuth} from '../constant/Auth';
-import LoginScreen from './LoginScreen';
+import {SIZES, image} from '../../constant';
 import {useDispatch, useSelector} from 'react-redux';
-import {AddNewUserAddress} from './redux/NewUserSlice';
+import {AddNewUserAddress} from '.././redux/NewUserSlice';
 
-const TravellerPhotoScreen = ({navigation, route}) => {
+const EditTravellerPhotoScreen = ({navigation, route}) => {
   const {passportData} = route.params; // Get passportData from route params
   const [isModalVisible, setModalVisible] = useState(false);
-  const [profilePhotoUrl, setProfilePhotoUrl] = useState(''); // State to store user profile photo URL
+  const [profilePhotoUrl, setProfilePhotoUrl] = useState(passportData.profilePhotoUrl || ''); // State to store user profile photo URL
   const dispatch = useDispatch();
 
   // Optional validation toast message
@@ -49,8 +46,9 @@ const TravellerPhotoScreen = ({navigation, route}) => {
       profilePhotoUrl: profilePhotoUrl,
     };
 
-    dispatch(AddNewUserAddress(updatedPassportData));
+    console.log(updatedPassportData)
 
+    dispatch(AddNewUserAddress(updatedPassportData));
     setModalVisible(!isModalVisible);
   };
 
@@ -84,6 +82,7 @@ const TravellerPhotoScreen = ({navigation, route}) => {
             placeholder={
               'Upload your passport front pic and\nwe’ll fetch all necessary data.'
             }
+            initialImageUrl={profilePhotoUrl} // Pass initial image URL
             onImageUpload={handleImageUpload} // Handle the Pancard image upload
           />
         </View>
@@ -123,7 +122,7 @@ const TravellerPhotoScreen = ({navigation, route}) => {
                   textAlign: 'center',
                   marginTop: 15,
                 }}>
-                Your account has been successfully created
+                Your account has been Updated successfully
               </Text>
             </View>
           </View>
@@ -133,7 +132,7 @@ const TravellerPhotoScreen = ({navigation, route}) => {
   );
 };
 
-export default TravellerPhotoScreen;
+export default EditTravellerPhotoScreen;
 
 const styles = StyleSheet.create({
   container: {

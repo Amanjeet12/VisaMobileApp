@@ -21,7 +21,7 @@ const UserDetailEdit = ({data, onSelect}) => {
 
   const handleNavigation = () => {
     console.log(data);
-    navigation.navigate('NewUploadPassportScreen', {passportData: data});
+    navigation.navigate('EditNewUploadPassportScreen', {passportData: data});
   };
 
   return (

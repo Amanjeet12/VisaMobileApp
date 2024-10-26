@@ -9,7 +9,20 @@ const NewUserSlice = createSlice({
   initialState,
   reducers: {
     AddNewUserAddress: (state, action) => {
-      state.passportData.push(action.payload); // Add new entry to the array
+      const existingUserIndex = state.passportData.findIndex(
+        user => user.userId === action.payload.userId
+      );
+
+      if (existingUserIndex !== -1) {
+        // Update the existing entry
+        state.passportData[existingUserIndex] = {
+          ...state.passportData[existingUserIndex],
+          ...action.payload,
+        };
+      } else {
+        // If userId does not exist, push the new entry
+        state.passportData.push(action.payload);
+      }
     },
   },
 });

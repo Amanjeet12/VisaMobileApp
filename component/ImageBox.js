@@ -12,34 +12,36 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {launchImageLibrary} from 'react-native-image-picker';
 import Cross from 'react-native-vector-icons/AntDesign';
 
-const ImageBox = ({placeholder, onImageUpload}) => {
-  const [imageSource, setImageSource] = useState(null);
+const ImageBox = ({placeholder, initialImageUrl, onImageUpload}) => {
+  const [imageSource, setImageSource] = useState(initialImageUrl || null);
   const [fileName, setFileName] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null); // URL from server after upload
+  const [imageUrl, setImageUrl] = useState(initialImageUrl || null); // Set initial URL if provided
 
-  // Function to upload the image
   const uploadImage = async (uri, fileName) => {
     try {
       const formData = new FormData();
       formData.append('file', {
         uri,
         name: fileName,
-        type: 'image/jpeg', // You can adjust this based on the file type
+        type: 'image/jpeg', // Adjust type if needed
       });
 
-      const response = await fetch('http://uat.visa247.co.in/backend/upload_file', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Content-Type': 'multipart/form-data',
+      const response = await fetch(
+        'http://uat.visa247.co.in/backend/upload_file',
+        {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
         },
-      });
+      );
 
       const result = await response.json();
 
       if (result.success === 1) {
-        setImageUrl(result.url); // Set the image URL from the response
-        onImageUpload(result.url); // Send the URL to the parent component
+        setImageUrl(result.url); // Update URL from the server
+        onImageUpload(result.url); // Callback to parent with the URL
       } else {
         Alert.alert('Error', 'Image upload failed');
       }
@@ -49,7 +51,6 @@ const ImageBox = ({placeholder, onImageUpload}) => {
     }
   };
 
-  // Function to select image from gallery
   const selectImage = () => {
     launchImageLibrary({quality: 0.5, selectionLimit: 1}, async fileobj => {
       if (fileobj.errorCode || fileobj.didCancel) {

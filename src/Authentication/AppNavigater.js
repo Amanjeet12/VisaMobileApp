@@ -29,6 +29,10 @@ import InsuranceScreen from '../Insurance/InsuranceScreen';
 import InsuranceCustomerScreen from '../Insurance/InsuranceCustomerScreen';
 import NewUploadPassportBackScreen from '../NewUploadPassportBackScreen';
 import NewPancardScreen from '../NewPancardScreen';
+import EditNewPancad from '../EditForm/EditNewPancad';
+import EditNewUploadPassportScreen from '../EditForm/EditNewUploadPassportScreen';
+import EditNewUploadPassportBackScreen from '../EditForm/EditNewUploadPassportBackScreen';
+import EditTravellerPhotoScreen from '../EditForm/EditTravellerPhotoScreen';
 
 const stack = createStackNavigator();
 
@@ -79,6 +83,10 @@ const AppNavigater = () => {
       <stack.Screen name="InsuranceCustomerScreen" component={InsuranceCustomerScreen} />
       <stack.Screen name="NewUploadPassportBackScreen" component={NewUploadPassportBackScreen} />
       <stack.Screen name="NewPancardScreen" component={NewPancardScreen} />
+      <stack.Screen name="EditNewUploadPassportScreen" component={EditNewUploadPassportScreen} />
+      <stack.Screen name="EditNewUploadPassportBackScreen" component={EditNewUploadPassportBackScreen} />
+      <stack.Screen name="EditNewPancad" component={EditNewPancad} />
+      <stack.Screen name="EditTravellerPhotoScreen" component={EditTravellerPhotoScreen} />
     </stack.Navigator>
   );
 };
